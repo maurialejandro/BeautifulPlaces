@@ -1,29 +1,25 @@
-import React from "react"
-import { View, Text, Image, StyleSheet, ScrollView, Button } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import React from 'react';
+import { View, Text, Image, StyleSheet, Button } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-export function UserGuest() {
+export function Login(){
     const navigation = useNavigation();
 
-    const goToLogin = () => {
-        navigation.navigate('login');
+    const goToRegister = () => {
+        navigation.navigate("register");
     }
-
-    return (
+    return(
         <View style={styles.container}>
             <Image 
                 style={styles.img}
                 source={require('../../../../assets/beautiful-places.png')} 
             />
-            <Text>¿Te gusta recorrer el mundo?</Text>
             <Text>
-                Te invitamos a hechar un vistazo a BeautifulPlaces 
-                Busca, Comparte y recorre de forma interactiva donde 
-                tu quieras
+            No tienes cuenta
+                <Text onPress={goToRegister} >Registrate</Text>
             </Text>
             <Button 
-                title="Ir al perfil"
-                onPress={goToLogin}
+                title="Login"
             />
         </View>
     )
