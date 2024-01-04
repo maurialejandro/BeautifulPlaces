@@ -15,7 +15,7 @@ export function Login(){
                 source={require('../../../../assets/beautiful-places.png')} 
             />
             <Text>
-            No tienes cuenta
+                No tienes cuenta
                 <Text onPress={goToRegister} >Registrate</Text>
             </Text>
             <Button 
