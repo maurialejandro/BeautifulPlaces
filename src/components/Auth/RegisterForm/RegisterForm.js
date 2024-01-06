@@ -1,10 +1,14 @@
 import React, { useRef } from 'react';
-import { View, Text, TextInput, Button, Alert } from 'react-native';
+import { View, Text, TextInput, Button, Alert, ToastAndroid } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { userRegister } from '../../../api/apiUser';
+import Toast from "react-native-root-toast";
+import {useNavigation} from "@react-navigation/native";
 
 export function RegisterForm(){
-    const toastRef = useRef();
+
+    const navigation = useNavigation();
+
     const { control, handleSubmit, formState: { errors } } = useForm({
         defaultValues: {
             email: '',
@@ -13,8 +17,16 @@ export function RegisterForm(){
     });
 
     const onSubmit = async (data) => {
-        //const res = await userRegister(data)
-        console.log(toastRef.current)
+        const res = await userRegister(data);
+        Toast.show(res.message, {
+            duration: Toast.durations.SHORT,
+            position: 500,
+            animation: true,
+            opacity: 0.8
+        });
+        if(res.status === 'success'){
+            navigation.navigate('login');
+        }
     };
 
     return(

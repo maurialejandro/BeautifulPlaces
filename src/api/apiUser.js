@@ -1,30 +1,15 @@
-import axios from "axios";
+import {AxiosIntance} from "./axiosInstance/AxiosInstance";
+import {handleToken} from "./token/handleToken";
 
-const myToken = '';
+const apiUrl = process.env.API_URL;
 
-// create handle token in account user guest, save token in localstorage
-// search if save token in localstorage is pro
-export async function getXCSRFToken (){
-    const response = await instance.get('/token').then((res) => {
-        console.log('getToken',res.data.token);
-        instance.defaults.headers['X-CSRF-TOKEN'] = res.data.token;
-    })
-}
+export async function userRegister (data){
 
-const instance = axios.create({
-    baseURL: 'http://192.168.100.15:8000/api',
-    timeout: 1000,
-    headers: { 
-        "Content-type": 'application/json',
-    }
-});
-
-export async function userRegister (data){;
-    await getXCSRFToken();
-    const response = await instance.post('/register',
+    AxiosIntance.defaults.headers['X-CSRF-TOKEN'] = await handleToken();
+    const response = await AxiosIntance.post('/register',
         JSON.stringify({ name: data.email, email: data.email, password: data.password })
     ).then((res) => {
-        return res.data.status;
+        return res.data;
     }).catch((e) => {
         return e;
     })
