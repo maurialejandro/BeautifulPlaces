@@ -1,9 +1,10 @@
-import React, { useRef } from 'react';
-import { View, Text, TextInput, Button, Alert, ToastAndroid } from 'react-native';
+import React from 'react';
+import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { userRegister } from '../../../api/apiUser';
 import Toast from "react-native-root-toast";
-import {useNavigation} from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
+import { CustomButton } from "../../Elements/CustomButton";
 
 export function RegisterForm(){
 
@@ -30,7 +31,7 @@ export function RegisterForm(){
     };
 
     return(
-        <View>
+        <View style={styles.container}>
             <Controller 
                 control={control}
                 rules={{
@@ -42,6 +43,9 @@ export function RegisterForm(){
                         onBlur={onBlur}
                         onChangeText={onChange}
                         value={value}
+                        style={styles.input}
+                        placeholderTextColor="#ffffff"
+                        cursorColor="#ffffff"
                     />
                 )}
                 name="email"
@@ -58,12 +62,52 @@ export function RegisterForm(){
                         onBlur={onBlur}
                         onChangeText={onChange}
                         value={value}
+                        style={styles.input}
+                        placeholderTextColor="#ffffff"
+                        cursorColor="#ffffff"
                     />
                 )}
                 name="password"
             />
             {errors.password && <Text> Debe ingresar password </Text>}
-            <Button title="Registrarme" onPress={handleSubmit(onSubmit)} />
+            <Controller
+                control={control}
+                rules={{
+                    required: true
+                }}
+                render={({ field: {onBlur, onChange, value} }) => (
+                    <TextInput
+                        placeholder='Re-Password'
+                        onBlur={onBlur}
+                        onChangeText={onChange}
+                        value={value}
+                        style={styles.input}
+                        placeholderTextColor="#ffffff"
+                        cursorColor="#ffffff"
+                    />
+                )}
+                name="password"
+            />
+            {errors.password && <Text> Debe ingresar re-password </Text>}
+            <CustomButton
+                title="REGISTRARME"
+                onPress={handleSubmit(onSubmit)}
+            />
         </View>
     )
 }
+const styles = StyleSheet.create({
+    container: {
+        width: "70%"
+    },
+    input: {
+        width: "100%",
+        marginTop: 15,
+        borderCurve: "circular",
+        opacity: 0.5,
+        backgroundColor: "#000000",
+        borderRadius: 16,
+        paddingLeft: 10,
+        color: "#ffffff"
+    },
+});

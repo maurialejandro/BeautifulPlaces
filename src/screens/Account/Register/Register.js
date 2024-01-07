@@ -4,28 +4,25 @@ import { RegisterForm } from '../../../components/Auth/RegisterForm/RegisterForm
 
 export function Register(){
     return(
-        <ScrollView>
-            <View styles={styles.containerR} >
-                <Image 
-                    style={styles.img}
-                    source={require('../../../../assets/beautiful-places.png')} 
-                />
-                <RegisterForm />
-            </View>
-        </ScrollView>
+        <View style={styles.container} >
+            <Image
+                style={styles.img}
+                source={require('../../../../assets/beautiful-places.png')}
+            />
+            <RegisterForm />
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
-    containerR: {
+    container: {
         flex: 1,
-        marginTop: 100,
         justifyContent: 'center',
         alignItems: 'center',
     },
     img: {
-        width: 160,
-        height: 160,
+        width: 60,
+        height: 60,
         marginBottom: 10,
     }
 })

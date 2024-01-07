@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { CustomButton } from "../../../components/Elements/CustomButton";
 
 export function Login(){
     const navigation = useNavigation();
@@ -18,8 +19,9 @@ export function Login(){
                 No tienes cuenta
                 <Text onPress={goToRegister} >Registrate</Text>
             </Text>
-            <Button 
-                title="Login"
+
+            <CustomButton
+                title="LOGIN"
             />
         </View>
     )

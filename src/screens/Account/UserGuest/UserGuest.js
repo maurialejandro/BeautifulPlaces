@@ -1,6 +1,7 @@
 import React from "react"
 import { View, Text, Image, StyleSheet, ScrollView, Button } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import {CustomButton} from "../../../components/Elements/CustomButton";
 
 export function UserGuest() {
     const navigation = useNavigation();
@@ -13,16 +14,17 @@ export function UserGuest() {
         <View style={styles.container}>
             <Image 
                 style={styles.img}
-                source={require('../../../../assets/beautiful-places.png')} 
+                source={require('../../../../assets/BeautifulPlaces.png')}
             />
             <Text>¿Te gusta recorrer el mundo?</Text>
             <Text>
-                Te invitamos a hechar un vistazo a BeautifulPlaces 
-                Busca, Comparte y recorre de forma interactiva donde 
+                Te invitamos a BeautifulPlaces
+                busca, comparte y recorre de
+                forma interactiva donde
                 tu quieras
             </Text>
-            <Button 
-                title="Ir al perfil"
+            <CustomButton
+                title="IR AL PERFIL"
                 onPress={goToLogin}
             />
         </View>
@@ -33,12 +35,10 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         marginTop: 100,
-        //justifyContent: 'center',
         alignItems: 'center',
     },
     img: {
-        width: 160,
-        height: 160,
-        marginBottom: 10,
+        width: 260,
+        height: 260,
     }
 })

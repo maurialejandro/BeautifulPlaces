@@ -7,11 +7,22 @@ const Stack = createStackNavigator();
 
 export function AccountStack(){
     return(
-        <Stack.Navigator>
+        <Stack.Navigator
+            screenOptions={{
+
+                cardStyle: { backgroundColor: "#9BB8CD" },
+                headerStyle: {
+                    backgroundColor: "#F3B664",
+                    borderBottomLeftRadius: 20,
+                    borderBottomRightRadius: 20,
+                }
+            }}
+        >
             <Stack.Screen 
                 name="account" 
                 component={UserGuest} 
                 options={{ title: "Cuenta" }}
+
             />
             <Stack.Screen 
                 name="login"
