@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { CustomButton } from "../../../components/Elements/CustomButton";
+import {LoginForm} from "../../../components/Auth/LoginForm/LoginForm";
 
 export function Login(){
     const navigation = useNavigation();
@@ -13,16 +14,14 @@ export function Login(){
         <View style={styles.container}>
             <Image 
                 style={styles.img}
-                source={require('../../../../assets/beautiful-places.png')} 
+                source={require('../../../../assets/BeautifulPlaces.png')}
             />
+            <LoginForm />
+
             <Text>
                 No tienes cuenta
-                <Text onPress={goToRegister} >Registrate</Text>
+                <Text onPress={goToRegister} style={styles.text} > registrate</Text>
             </Text>
-
-            <CustomButton
-                title="LOGIN"
-            />
         </View>
     )
 }
@@ -30,13 +29,13 @@ export function Login(){
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginTop: 100,
-        //justifyContent: 'center',
         alignItems: 'center',
     },
+    text: {
+        color: "#FDFFAB"
+    },
     img: {
-        width: 160,
-        height: 160,
-        marginBottom: 10,
+        width: 260,
+        height: 260,
     }
 })

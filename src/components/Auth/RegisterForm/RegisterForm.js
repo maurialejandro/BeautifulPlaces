@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput, StyleSheet } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { userRegister } from '../../../api/apiUser';
 import Toast from "react-native-root-toast";
@@ -69,7 +69,7 @@ export function RegisterForm(){
                 )}
                 name="password"
             />
-            {errors.password && <Text> Debe ingresar password </Text>}
+            {errors.password && <Text style={styles.txt} > Debe ingresar password </Text>}
             <Controller
                 control={control}
                 rules={{
@@ -88,7 +88,7 @@ export function RegisterForm(){
                 )}
                 name="password"
             />
-            {errors.password && <Text> Debe ingresar re-password </Text>}
+            {errors.password && <Text style={styles.txt} > Debe ingresar re-password </Text>}
             <CustomButton
                 title="REGISTRARME"
                 onPress={handleSubmit(onSubmit)}
@@ -102,7 +102,8 @@ const styles = StyleSheet.create({
     },
     input: {
         width: "100%",
-        marginTop: 15,
+        height: 50,
+        marginTop: 20,
         borderCurve: "circular",
         opacity: 0.5,
         backgroundColor: "#000000",
@@ -110,4 +111,7 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         color: "#ffffff"
     },
+    txt: {
+        color: "#BF3131"
+    }
 });

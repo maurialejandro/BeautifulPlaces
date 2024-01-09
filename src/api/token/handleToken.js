@@ -1,8 +1,6 @@
-import axios from "axios";
 import * as SecureStore from 'expo-secure-store';
-import {AxiosIntance} from "../axiosInstance/AxiosInstance";
-const apiUrl = process.env.API_URL;
-const key = process.env.KEY_STORE;
+import { AxiosIntance } from "../axiosInstance/AxiosInstance";
+const xcsrfKey = process.env.KEY_XCSRF;
 
 /**
  * handle token manage token in SecureStore
@@ -11,16 +9,29 @@ const key = process.env.KEY_STORE;
  * to get token and return as string
  */
 export async function handleToken(){
-    try {
-        const tokenLocal = await SecureStore.getItemAsync(key);
+        const tokenLocal = await SecureStore.getItemAsync(xcsrfKey);
         if(!tokenLocal){
-            const response = await AxiosIntance.get('/token');
-            await SecureStore.setItemAsync(key, response.data.token);
-            return response.data.token;
+            return await getXCSRFToken();
+        }
+        const checkToken = await checkXCSRFToken();
+        if(checkToken.status === 400){
+            return await getXCSRFToken();
         }
         return tokenLocal;
-    } catch (e) {
-        return console.log(e, 'here in error');
-    }
+}
 
+async function getXCSRFToken(){
+    try {
+        const response = await AxiosIntance.get('/token');
+        return response.data.token;
+    } catch (e) {
+        return 'error';
+    }
+}
+async function checkXCSRFToken(){
+    return await AxiosIntance.post('/check-token-x-csrf').then((res) => {
+        return true;
+    }).catch((e) => {
+        return {'status': 400}
+    })
 }

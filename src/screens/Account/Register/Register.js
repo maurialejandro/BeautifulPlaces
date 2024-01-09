@@ -7,7 +7,7 @@ export function Register(){
         <View style={styles.container} >
             <Image
                 style={styles.img}
-                source={require('../../../../assets/beautiful-places.png')}
+                source={require('../../../../assets/BeautifulPlaces.png')}
             />
             <RegisterForm />
         </View>
@@ -17,12 +17,10 @@ export function Register(){
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
         alignItems: 'center',
     },
     img: {
-        width: 60,
-        height: 60,
-        marginBottom: 10,
+        width: 260,
+        height: 260,
     }
 })

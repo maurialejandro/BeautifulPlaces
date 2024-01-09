@@ -1,7 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack';
-import { UserGuest } from '../screens/Account/UserGuest/UserGuest';
 import { Login } from '../screens/Account/Login/Login';
 import { Register } from '../screens/Account/Register/Register';
+import { Account } from "../screens/Account/Account";
 
 const Stack = createStackNavigator();
 
@@ -9,7 +9,6 @@ export function AccountStack(){
     return(
         <Stack.Navigator
             screenOptions={{
-
                 cardStyle: { backgroundColor: "#9BB8CD" },
                 headerStyle: {
                     backgroundColor: "#F3B664",
@@ -20,7 +19,7 @@ export function AccountStack(){
         >
             <Stack.Screen 
                 name="account" 
-                component={UserGuest} 
+                component={Account}
                 options={{ title: "Cuenta" }}
 
             />
