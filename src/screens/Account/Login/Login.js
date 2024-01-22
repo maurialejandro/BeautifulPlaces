@@ -1,12 +1,10 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, Button } from 'react-native';
+import { View, Text, Image, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { CustomButton } from "../../../components/Elements/CustomButton";
-import {LoginForm} from "../../../components/Auth/LoginForm/LoginForm";
+import { LoginForm } from "../../../components/Auth/LoginForm/LoginForm";
 
 export function Login(){
     const navigation = useNavigation();
-
     const goToRegister = () => {
         navigation.navigate("register");
     }
@@ -16,7 +14,7 @@ export function Login(){
                 style={styles.img}
                 source={require('../../../../assets/BeautifulPlaces.png')}
             />
-            <LoginForm />
+            <LoginForm nav={navigation} />
 
             <Text>
                 No tienes cuenta

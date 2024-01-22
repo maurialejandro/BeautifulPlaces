@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button, Image, StyleSheet, ScrollView } from 'react-native';
+import { View, Image, StyleSheet } from 'react-native';
 import { RegisterForm } from '../../../components/Auth/RegisterForm/RegisterForm';
 
 export function Register(){

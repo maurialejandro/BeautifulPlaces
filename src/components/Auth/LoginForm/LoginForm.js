@@ -1,29 +1,51 @@
-import React from "react";
-import {View, Text, TextInput, StyleSheet} from "react-native";
+import React, {useEffect} from "react";
+import { View, Text, TextInput, StyleSheet } from "react-native";
 import { useForm, Controller } from "react-hook-form";
-import { useNavigation } from "@react-navigation/native";
-import {CustomButton} from "../../Elements/CustomButton";
-import {userLogin} from "../../../api/apiUser";
+import { CustomButton } from "../../Elements/CustomButton";
 import Toast from "react-native-root-toast";
+import { userLogin } from "../../../api/apiUser";
+import {useAuthContext, useUserLoginContext} from "../../../context/AuthContext";
 
-export function LoginForm(){
-    const navigation = useNavigation();
-    const { control, handleSubmit, formState: { errors } } = useForm({
+export function LoginForm(props){
+
+    const { nav } = props;
+    const login = useUserLoginContext();
+
+    const { control, handleSubmit, formState: { errors }, getValues } = useForm({
         defaultValues: {
             email: "",
             password: ""
         }
     });
     const onSubmit = async (data) => {
+
         const res = await userLogin(data);
-        if(res.status === 200){
-            Toast.show("logged", {
+
+        if(res.error?.email || res.error?.password){
+            Toast.show(res.error.email ? res.error.email : res.error.password, {
                 duration: Toast.durations.SHORT,
                 position: 500,
                 animation: true,
                 opacity: 0.8
             });
-            navigation.navigate('Places');
+        }
+        if(res.error){
+            Toast.show(res.error, {
+                duration: Toast.durations.SHORT,
+                position: 500,
+                animation: true,
+                opacity: 0.8
+            });
+        }
+        if(res.status === 200){
+            await login();
+            Toast.show('Logged', {
+                duration: Toast.durations.SHORT,
+                    position: 500,
+                    animation: true,
+                    opacity: 0.8
+            });
+            nav.navigate('Places');
         }
     };
 

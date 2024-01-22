@@ -6,7 +6,7 @@ export const AxiosIntance = axios.create(
         baseURL: apiUrl,
         timeout: 1000,
         headers: {
-            "Content-Type": 'application/json',
+            'Content-Type': 'application/json',
         }
     }
 );

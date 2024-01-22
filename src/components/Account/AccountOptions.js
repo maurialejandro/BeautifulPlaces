@@ -23,14 +23,9 @@ const onCloseOpenModal = () => setShowModal(prevState => !prevState);
 
     return (
         <View>
-            {
-                map(menuOptions, (menu, index) => (
-                    <ListItem key={index} bottomDivider onPress={menu.onPress()} >
-
-                    </ListItem>
-                ))
-            }
-
+            <Text>
+                USER LOGGED
+            </Text>
         </View>
     )
 }

@@ -7,7 +7,6 @@ import {FavoritesStack} from "./FavoritesStack";
 import {RankingStack} from "./RankingStack";
 
 const Tab = createBottomTabNavigator();
-
 export function Navigation (){
     return(
         <Tab.Navigator
@@ -16,6 +15,11 @@ export function Navigation (){
                 headerShown: false,
                 tabBarActiveBackgroundColor: "#FDFFAB",
                 tabBarInactiveBackgroundColor: "#F3B664",
+                tabBarStyle: {
+                    borderStyle: "solid",
+                    borderTopWidth: 1,
+                    borderColor: "#000000",
+                },
                 tabBarIconStyle: { opacity: 0.7 },
                 tabBarIcon: ({ color, size }) => screenOptions(route, color = "#000000", size= 25),
                 tabBarLabelStyle: { color: "#000000" }
@@ -42,7 +46,9 @@ export function Navigation (){
                 name="Account"
                 component={AccountStack}
             />
+
         </Tab.Navigator>
+
     )
 }
  function screenOptions(route, color, size) {

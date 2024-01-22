@@ -19,15 +19,24 @@ export function RegisterForm(){
 
     const onSubmit = async (data) => {
         const res = await userRegister(data);
-        Toast.show(res.message, {
-            duration: Toast.durations.SHORT,
-            position: 500,
-            animation: true,
-            opacity: 0.8
-        });
-        if(res.status === 'success'){
+        if(res.status === 200){
+            Toast.show('Registered', {
+                duration: Toast.durations.SHORT,
+                position: 500,
+                animation: true,
+                opacity: 0.8
+            });
             navigation.navigate('login');
         }
+        if(res.error?.email || res.error?.password){
+            Toast.show(res.error.email ? res.error.email : res.error.password, {
+                duration: Toast.durations.SHORT,
+                position: 500,
+                animation: true,
+                opacity: 0.8
+            });
+        }
+
     };
 
     return(
