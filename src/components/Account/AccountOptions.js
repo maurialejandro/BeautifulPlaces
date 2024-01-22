@@ -23,9 +23,7 @@ const onCloseOpenModal = () => setShowModal(prevState => !prevState);
 
     return (
         <View>
-            <Text>
-                USER LOGGED
-            </Text>
+
         </View>
     )
 }

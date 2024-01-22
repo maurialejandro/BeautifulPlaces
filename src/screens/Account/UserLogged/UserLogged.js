@@ -9,7 +9,6 @@ export function UserLogged(){
 
     return (
         <View>
-            <Text>User logged</Text>
             <AccountOptions onReload={onReload} />
             <CustomButton
                 title="SingOut"
