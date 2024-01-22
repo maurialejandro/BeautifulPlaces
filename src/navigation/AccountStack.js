@@ -8,20 +8,21 @@ import {UserLogged} from "../screens/Account/UserLogged/UserLogged";
 const Stack = createStackNavigator();
 
 export function AccountStack(){
-    const isLogged = useAuthContext();
-
+    //const isLogged = useAuthContext();
+    //console.log(isLogged)
+    const isLogged = true;
     return(
         <Stack.Navigator
             screenOptions={{
-                cardStyle: { backgroundColor: "#9BB8CD" },
+                cardStyle: { backgroundColor: "#ffffff" },
                 headerStyle: {
-                    backgroundColor: "#F3B664",
+                    backgroundColor: "#FFB534",
                     borderBottomLeftRadius: 20,
                     borderBottomRightRadius: 20,
-                    borderBottomWidth: 1,
+                    borderBottomWidth: 0.2,
                     borderColor: "#000000",
-                    borderStartWidth: 1,
-                    borderEndWidth: 1,
+                    borderStartWidth: 0.2,
+                    borderEndWidth: 0.2,
                     borderStyle: "solid",
                 }
             }}
@@ -29,9 +30,9 @@ export function AccountStack(){
             { isLogged ? (
                 <>
                     <Stack.Screen
-                        name="logged"
+                        name="account-options"
                         component={UserLogged}
-                        options={{ title: "Logged" }}
+                        options={{ title: "Cuenta" }}
                     />
                 </>
             ) : (
@@ -45,12 +46,12 @@ export function AccountStack(){
                     <Stack.Screen
                         name="login"
                         component={Login}
-                        options={{ title: "Login" }}
+                        options={{ title: "Iniciar sesion" }}
                     />
                     <Stack.Screen
                         name="register"
                         component={Register}
-                        options={{ title: "Register" }}
+                        options={{ title: "Registro" }}
                     />
                 </>
 
