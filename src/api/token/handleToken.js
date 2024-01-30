@@ -8,3 +8,7 @@ export async function saveSecureToken(token){
 export async function getSecureToken(){
     return await SecureStore.getItemAsync(keyToken);
 }
+
+export async function removeSecureToken(){
+    return await SecureStore.setItemAsync(keyToken, null);
+}

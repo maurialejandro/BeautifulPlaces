@@ -1,8 +1,7 @@
-import { AxiosIntance } from "./axiosInstance/AxiosInstance";
-import { saveSecureToken } from "./token/handleToken";
+import {AxiosIntance} from "./axiosInstance/AxiosInstance";
+import {getSecureToken, saveSecureToken} from "./token/handleToken";
 
 export async function userRegister (data){
-
     return await AxiosIntance.post('/register',
         JSON.stringify({name: data.email, email: data.email, password: data.password})
     ).then((res) => {
@@ -31,4 +30,66 @@ export async function userLogin(data){
         }
         return e;
     });
+}
+
+export async function updateNameUser(data){
+    let token = await getSecureToken();
+    AxiosIntance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    return await AxiosIntance.post('/user/update-name',
+        JSON.stringify({name: data.name})
+    ).then((res) => {
+        return res.data;
+    }).catch((e) => {
+        // handle unautorized response with context
+        console.log(e.response.data)
+        return e.response.data
+    })
+}
+
+export async function updateEmail(data){
+    let token = await getSecureToken();
+    AxiosIntance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    return await AxiosIntance.post('/user/update-email',
+        JSON.stringify({ email: data.email, password: data.password })
+    ).then((res) => {
+        return res.data
+    }).catch((e) => {
+        if(e.response.data.errors){
+            return e.response.data
+        }
+        console.log(e, e.response.data);
+        return e;
+    })
+}
+
+export async function updatePassword(data, email) {
+    let token = await getSecureToken();
+    AxiosIntance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    return await AxiosIntance.post('/user/update-password',
+        JSON.stringify({ email: email, password: data.newPassword })
+    ).then((res) => {
+        return res.data
+    }).catch((e) => {
+        if(e.response.data){
+            return e.response.data
+        }
+        console.log(e, e.response.data);
+        return e;
+    })
+}
+
+export async function apiLogout(){
+    let token = await getSecureToken();
+    AxiosIntance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    return await AxiosIntance.post('logout')
+        .then((res) => {
+            return res
+        })
+        .catch((e) => {
+            console.log(e);
+            if(e.response.data){
+                return e.response.data;
+            }
+            return e;
+        })
 }

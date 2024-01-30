@@ -8,9 +8,9 @@ import {UserLogged} from "../screens/Account/UserLogged/UserLogged";
 const Stack = createStackNavigator();
 
 export function AccountStack(){
-    //const isLogged = useAuthContext();
-    //console.log(isLogged)
-    const isLogged = true;
+
+    const user = useAuthContext();
+
     return(
         <Stack.Navigator
             screenOptions={{
@@ -27,7 +27,7 @@ export function AccountStack(){
                 }
             }}
         >
-            { isLogged ? (
+            { user.isLogged ? (
                 <>
                     <Stack.Screen
                         name="account-options"

@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     text: {
-        color: "#FDFFAB"
+        color: "#C1F2B0"
     },
     img: {
         width: 260,

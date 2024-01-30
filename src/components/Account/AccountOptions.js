@@ -8,7 +8,7 @@ import { ChangeEmailForm } from "./ChangeEmailForm";
 import {Modal} from "../Shared/Modal";
 
 export function AccountOptions(props){
-    const { onReload } = props;
+    const { onReload, nav } = props;
     const [ showModal, setShowModal ] = useState(false);
     const [ renderComponent, setRenderComponent ] = useState(null);
 
@@ -26,7 +26,7 @@ const onCloseOpenModal = () => setShowModal(prevState => !prevState);
         }
 
         if (key === "password") {
-            setRenderComponent(<ChangePasswordForm onClose={onCloseOpenModal} />);
+            setRenderComponent(<ChangePasswordForm onClose={onCloseOpenModal} onReload={onReload} />);
         }
         onCloseOpenModal();
    };

@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     img: {
-        width: 260,
-        height: 260,
+        width: 330,
+        height: 330,
     }
 })

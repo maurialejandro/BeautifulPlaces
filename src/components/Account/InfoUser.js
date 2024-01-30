@@ -2,9 +2,10 @@ import React from 'react';
 import {Text, View} from "react-native";
 import { Avatar } from "@rneui/base";
 import { styles } from "../styles";
+import {useAuthContext} from "../../context/AuthContext";
 
 export function InfoUser(){
-
+    const user = useAuthContext();
     return(
         <View style={styles.contentAvatar}>
             <Avatar
@@ -18,10 +19,10 @@ export function InfoUser(){
             </Avatar>
             <View>
                 <Text style={styles.displayNameAvatar} >
-                    Nombre
+                    { user.userName }
                 </Text>
                 <Text>
-                    Email
+                    { user.userEmail }
                 </Text>
             </View>
         </View>
