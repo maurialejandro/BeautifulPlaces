@@ -24,7 +24,7 @@ export function UserGuest() {
                 tu quieras
             </Text>
             <CustomButton
-                title="IR AL PERFIL"
+                title="Ir al perfil"
                 onPress={goToLogin}
             />
         </View>

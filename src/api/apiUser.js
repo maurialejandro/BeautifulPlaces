@@ -1,4 +1,4 @@
-import {AxiosIntance} from "./axiosInstance/AxiosInstance";
+import {AxiosIntance, AxiosIntanceImage} from "./axiosInstance/AxiosInstance";
 import {getSecureToken, saveSecureToken} from "./token/handleToken";
 
 export async function userRegister (data){
@@ -69,6 +69,22 @@ export async function updatePassword(data, email) {
         JSON.stringify({ email: email, password: data.newPassword })
     ).then((res) => {
         return res.data
+    }).catch((e) => {
+        if(e.response.data){
+            return e.response.data
+        }
+        console.log(e, e.response.data);
+        return e;
+    })
+}
+
+export async function storeAvatar(data) {
+    let token = await getSecureToken();
+    AxiosIntanceImage.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    return await AxiosIntanceImage.post('/user/store-avatar',
+        data
+    ).then((res) => {
+        return res.data;
     }).catch((e) => {
         if(e.response.data){
             return e.response.data

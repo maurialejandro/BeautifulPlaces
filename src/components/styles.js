@@ -34,5 +34,20 @@ export const styles = StyleSheet.create({
     },
     txtModal: {
         color: "#000000"
+    },
+    viewPlacesBody: {
+        flex: 1,
+        backgroundColor: "#fff"
+    },
+    btnContainer: {
+        position: "absolute",
+        bottom: 10,
+        right:10,
+        backgroundColor: "#fff",
+        shadowColor: "black",
+        shadowOffset: {
+            width: 2, height: 2
+        },
+        shadowOpacity: 0.5
     }
 })

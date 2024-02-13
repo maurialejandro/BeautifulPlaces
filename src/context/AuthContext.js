@@ -8,7 +8,8 @@ const userLogoutContext = React.createContext();
 const userData = {
     isLogged: false,
     userName: null,
-    userEmail: null
+    userEmail: null,
+    userAvatar: null
 }
 
 export function useAuthContext(){
@@ -34,7 +35,8 @@ export const AuthProvider = (props) => {
             setUser({
                 isLogged: true,
                 userName: data.name,
-                userEmail: data.email
+                userEmail: data.email,
+                userAvatar: data.avatar
             });
         }
     }
@@ -50,7 +52,8 @@ export const AuthProvider = (props) => {
             await setUser({
                 isLogged: true,
                 userName: data.name,
-                userEmail: data.email
+                userEmail: data.email,
+                userAvatar: data.avatar
             });
         }
     }
