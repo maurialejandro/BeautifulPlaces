@@ -1,13 +1,72 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Text, View} from "react-native";
+import {Modal} from "../Shared/Modal";
+import MapView, {Marker, PROVIDER_GOOGLE} from "react-native-maps";
+import {styles} from "../styles";
+import {CustomButton} from "./CustomButton";
+import * as Location from 'expo-location';
+import {myToast} from "./myToast";
 
-export default function ModalMap (){
+export default function ModalMap (props){
+    const { isVisibleMap,
+        setIsVisibleMap,
+        location,
+        setLocation
+    } = props;
+    const [errorMsg, setErrorMsg] = useState(null);
+
+    useEffect(() => {
+        (async () => {
+            let { status } = await Location.requestForegroundPermissionsAsync();
+            if (status !== 'granted') {
+                myToast('Permisos para acceder a la localizacion ha sido denegada')
+                setErrorMsg('Permission to access location was denied');
+                return;
+            }
+            let location = await Location.getCurrentPositionAsync({});
+            await setLocation({
+                latitude: location.coords.latitude,
+                longitude: location.coords.longitude,
+                latitudeDelta: 0.001,
+                longitudeDelta: 0.001
+            });
+        })()
+    }, []);
+
+    const changeLocation = (location) => {
+        setLocation(location);
+    }
 
     return(
-        <View>
-            <Text>
-                Modal Map
-            </Text>
-        </View>
+        <Modal
+            show={isVisibleMap}
+        >
+            { location && (
+                <View style={styles.containerMap} >
+                    <MapView
+                        style={styles.mapStyle}
+                        showsUserLocation={true}
+                        initialRegion={location}
+                        mapType="standard"
+                    >
+                        <Marker
+                            coordinate={{
+                                latitude: location.latitude,
+                                longitude: location.longitude
+                            }}
+                            draggable
+                        />
+                    </MapView>
+                </View>
+            )}
+            <View style={styles.viewBtnModal} >
+                <CustomButton title="Agregar" onPress={() => {
+                    changeLocation(location);
+                    setIsVisibleMap(false);
+                    myToast('Ubicación agregada')
+                }} />
+                <CustomButton title="Cerrar" onPress={() => setIsVisibleMap(false)} />
+            </View>
+        </Modal>
     );
 }

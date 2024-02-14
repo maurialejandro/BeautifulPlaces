@@ -26,14 +26,17 @@ export function PlacesStack(){
             <Stack.Screen
                 name="places"
                 component={Places}
+                options={{title: "Lugares"}}
             />
             <Stack.Screen
                 name='place'
                 component={Place}
+                options={{title: "Lugar"}}
             />
             <Stack.Screen
                 name='add-place'
                 component={AddPlace}
+                options={{title: "Añadir nuevo lugar"}}
             />
         </Stack.Navigator>
     )

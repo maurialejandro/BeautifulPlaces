@@ -7,6 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 import { CustomButton } from "../../Elements/CustomButton";
 import {CustomLoading} from "../../Elements/CustomLoading";
 import {myToast} from "../../Elements/myToast";
+import { styles } from "../../styles";
 
 export function RegisterForm(){
 
@@ -119,22 +120,3 @@ export function RegisterForm(){
         </View>
     )
 }
-const styles = StyleSheet.create({
-    container: {
-        width: "70%"
-    },
-    input: {
-        width: "100%",
-        height: 50,
-        marginTop: 20,
-        borderCurve: "circular",
-        opacity: 0.5,
-        backgroundColor: "#000000",
-        borderRadius: 16,
-        paddingLeft: 10,
-        color: "#ffffff"
-    },
-    txt: {
-        color: "#BF3131"
-    }
-});

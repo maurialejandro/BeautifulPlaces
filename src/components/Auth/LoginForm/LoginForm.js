@@ -7,6 +7,7 @@ import { userLogin } from "../../../api/apiUser";
 import { useUserLoginContext } from "../../../context/AuthContext";
 import {CustomLoading} from "../../Elements/CustomLoading";
 import {myToast} from "../../Elements/myToast";
+import { styles } from "../../styles";
 
 export function LoginForm(props){
 
@@ -93,22 +94,3 @@ export function LoginForm(props){
         </View>
     )
 }
-const styles = StyleSheet.create({
-    container: {
-        width: "70%"
-    },
-    input: {
-        width: "100%",
-        height: 50,
-        marginTop: 20,
-        borderCurve: "circular",
-        opacity: 0.5,
-        backgroundColor: "#000000",
-        borderRadius: 16,
-        paddingLeft: 10,
-        color: "#ffffff"
-    },
-    txt: {
-        color: "#FFFFDD"
-    }
-});

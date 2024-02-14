@@ -21,7 +21,6 @@ export function Places(){
                         type="material-community"
                         name="plus"
                         color="#FFB534"
-                        iconStyle={styles.btnAddPlacesContainer}
                         onPress={() => navigation.navigate('add-place')}
                     />
                 )
