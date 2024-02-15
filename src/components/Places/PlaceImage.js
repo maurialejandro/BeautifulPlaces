@@ -7,7 +7,7 @@ export default function PlaceImage(props){
     const { images, setImages } = props;
 
     return(
-        <View style={styles.container} >
+        <View style={styles.containerImg} >
             <Image
                 source={ images ? {uri: images } : require('../../../assets/default-image.png') }
                 style={styles.imgPlace}

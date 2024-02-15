@@ -1,20 +1,22 @@
 import React, {useState} from "react";
-import { Text, TextInput, View } from "react-native";
+import {Platform, Text, TextInput, View} from "react-native";
 import {styles} from "../styles";
 import {Icon} from "@rneui/themed";
 import {useForm, Controller} from "react-hook-form";
 import {CustomButton} from "../Elements/CustomButton";
-import * as ImagePicker from "expo-image-picker";
-import * as ImageManipulator from "expo-image-manipulator";
 import UploadedImages from "./UploadedImages";
+import {storeImagesPlace, storePlace} from "../../api/apiPlace";
+import {myToast} from "../Elements/myToast";
 
 export default function AddPlaceForm(props) {
+
+    const [resImageStatus, setResImageStatus] = useState(false);
+
     const { setIsVisibleMap,
         location,
         images,
         setImages
     } = props;
-
 
     const { handleSubmit, control,
         formState: { errors }, getValues
@@ -25,8 +27,41 @@ export default function AddPlaceForm(props) {
         }
     });
 
-    const onSubmit = (data) => {
-        console.log(data, location)
+    const onSubmit = async (data) => {
+
+        if(!images || !location){
+            return;
+        }
+        const res = await storePlace(data, location);
+
+        if(res.status !== 200) {
+            myToast('Error al guardar lugar');
+            return;
+        }
+            let formData = new FormData()
+            images.map(async (file, index) => {
+                const response = await fetch(file)
+                const blob = await response.blob()
+                formData.append('image', {
+                    file: blob,
+                    uri: Platform.OS === 'ios' ? file.replace('file://', ''): file,
+                    type: blob.type,
+                    size: blob.size,
+                    name: blob._data.name
+                })
+                formData.append('id', res.place.id);
+                const imageRes = await storeImagesPlace(formData);
+                if(imageRes.status !== 200 ){
+                    setResImageStatus(true);
+                }
+            })
+            if(!resImageStatus){
+                myToast('Lugar almacenado');
+            } else {
+                myToast('Error al almacenar');
+            }
+
+
     }
 
 
@@ -61,7 +96,8 @@ export default function AddPlaceForm(props) {
                     render={({ field: { onChange, onBlur, value } }) => (
                         <TextInput
                             placeholder="Descripción"
-                            style={styles.inputInto}
+                            style={styles.textArea}
+                            multiline={true}
                             onBlur={onBlur}
                             onChangeText={onChange}
                             value={value}

@@ -8,12 +8,27 @@ export const styles = StyleSheet.create({
     container: {
         width: "70%"
     },
+    containerImg:{
+        width: "100%",
+        marginTop: -15,
+    },
     containerPlaceForm: {
         flex: 1,
         alignItems: 'center'
     },
     viewImage:{
         flexDirection: "row",
+    },
+    textArea: {
+        width: "100%",
+        height: 100,
+        marginTop: 20,
+        borderCurve: "circular",
+        opacity: 0.5,
+        backgroundColor: "#000000",
+        borderRadius: 16,
+        paddingLeft: 10,
+        color: "#ffffff"
     },
     inputInto: {
         width: "100%",

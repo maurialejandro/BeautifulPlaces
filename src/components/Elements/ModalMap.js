@@ -20,15 +20,15 @@ export default function ModalMap (props){
             let { status } = await Location.requestForegroundPermissionsAsync();
             if (status !== 'granted') {
                 myToast('Permisos para acceder a la localizacion ha sido denegada')
-                setErrorMsg('Permission to access location was denied');
+                setErrorMsg('Permisos para acceder a la localizacion ha sido denegada');
                 return;
             }
             let location = await Location.getCurrentPositionAsync({});
             await setLocation({
                 latitude: location.coords.latitude,
                 longitude: location.coords.longitude,
-                latitudeDelta: 0.001,
-                longitudeDelta: 0.001
+                latitudeDelta: 0.007,
+                longitudeDelta: 0.007
             });
         })()
     }, []);

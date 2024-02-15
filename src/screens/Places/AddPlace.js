@@ -12,8 +12,10 @@ export default function AddPlace(){
     const [ images, setImages ] = useState([]);
 
     return(
-        <View style={styles.containerPlaceForm} >
+        <>
             <PlaceImage images={images[0]} setImages={setImages} />
+
+        <View style={styles.containerPlaceForm} >
             <AddPlaceForm
                 setIsVisibleMap={setIsVisibleMap}
                 location={location}
@@ -27,5 +29,6 @@ export default function AddPlace(){
                 setLocation={setLocation}
             />
         </View>
+            </>
     );
 }
