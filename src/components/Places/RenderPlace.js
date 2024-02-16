@@ -4,6 +4,8 @@ import React from "react";
 
 export default function RenderPlace(props){
     const { place, navigation } = props
+
+    console.log(place)
     const goToPlato = () => {
         console.log('HERE');
     }
@@ -11,11 +13,12 @@ export default function RenderPlace(props){
         <TouchableOpacity onPress={() => goToPlato()}>
             <View>
                 <View>
-                    <Text>IMAGE</Text>
+                    <Text>{place.item.name}</Text>
                 </View>
                 <View>
-                    <Text>INFO</Text>
+                    <Text>{place.item.description}</Text>
                 </View>
+
             </View>
         </TouchableOpacity>
     )

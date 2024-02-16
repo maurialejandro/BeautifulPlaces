@@ -22,7 +22,7 @@ export function Places(){
 
     const getPlacesBack = async () => {
         const res = await getPlaces();
-        console.log(res)
+
         setPlaces(res.places);
 
     }
