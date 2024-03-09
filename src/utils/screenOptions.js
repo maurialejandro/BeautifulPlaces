@@ -3,22 +3,22 @@ import {Icon} from "@rneui/base";
 export function screenOptions(focused, route, color, size) {
     let iconName;
     switch(route.name) {
-        case "Account":
+        case "Cuenta":
             iconName = focused
                 ? 'account-circle'
                 : 'account-circle-outline';
             break;
-        case "Places":
+        case "Mis Lugares":
             iconName = focused
                 ? "emoticon-cool"
                 : "emoticon-cool-outline"
             break;
-        case "Search":
+        case "Explorar":
             iconName = focused
                 ? "map-search"
                 : "map-search-outline"
             break;
-        case "Favorites":
+        case "Favoritos":
             iconName = focused
                 ? "heart"
                 : "heart-outline"

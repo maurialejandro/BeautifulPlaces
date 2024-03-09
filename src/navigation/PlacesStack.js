@@ -1,7 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import { Places } from "../screens/Places/Places";
 import Place from "../screens/Places/Place";
-import AddPlaceForm from "../components/Places/AddPlaceForm";
 import AddPlace from "../screens/Places/AddPlace";
 
 export function PlacesStack(){

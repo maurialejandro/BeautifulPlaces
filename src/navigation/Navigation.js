@@ -9,7 +9,7 @@ const Tab = createBottomTabNavigator();
 export function Navigation (){
     return(
         <Tab.Navigator
-            initialRouteName="Account"
+            initialRouteName="Cuenta"
             screenOptions={({ route }) => ({
                 headerShown: false,
                 tabBarStyle: {
@@ -27,16 +27,15 @@ export function Navigation (){
             })}
         >
             <Tab.Screen
-                name="Places"
+                name="Mis Lugares"
                 component={PlacesStack}
-
             />
             <Tab.Screen
-                name="Search"
+                name="Explorar"
                 component={SearchStack}
             />
             <Tab.Screen
-                name="Favorites"
+                name="Favoritos"
                 component={FavoritesStack}
             />
             <Tab.Screen
@@ -44,7 +43,7 @@ export function Navigation (){
                 component={RankingStack}
             />
             <Tab.Screen
-                name="Account"
+                name="Cuenta"
                 component={AccountStack}
             />
 

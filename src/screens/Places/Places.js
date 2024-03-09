@@ -6,35 +6,45 @@ import {styles} from "../../components/styles";
 import {useNavigation} from "@react-navigation/native";
 import ListPlaces from "../../components/Places/ListPlaces";
 import {getPlaces} from "../../api/apiPlace";
+import {useAddPlaceContext, usePlaceContext} from "../../context/PlaceContext";
 
 export function Places(){
 
     const user = useAuthContext();
     const navigation = useNavigation();
-    const [places, setPlaces] = useState([]);
     const [ isLoading, setIsLoading ] = useState(false)
+    const places = usePlaceContext();
+    const addPlaces = useAddPlaceContext();
 
     useEffect(() => {
         (async() => {
-            await getPlacesBack()
+            if(user.isLogged){
+                await getPlacesBack()
+            }
         })()
     }, []);
 
     const getPlacesBack = async () => {
         const res = await getPlaces();
-
-        setPlaces(res.places);
-
+        if(res.places.length === 0){
+            return;
+        }
+        if(res.status === 200){
+            await addPlaces(res.places);
+        }
     }
     return (
         <View
             style={styles.viewPlacesBody}
-        >
-            <ListPlaces
-                isLoading={isLoading}
-                places={places}
-                nav={navigation}
-            />
+        >{
+            places[0].name && (
+                <ListPlaces
+                    isLoading={isLoading}
+                    places={places}
+                    nav={navigation}
+                />
+            )
+        }
             {
                 user.isLogged && (
                     <Icon

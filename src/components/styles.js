@@ -19,6 +19,17 @@ export const styles = StyleSheet.create({
     viewImage:{
         flexDirection: "row",
     },
+    viewPlace: {
+        flexDirection: "row",
+        margin: 10
+    },
+    viewPlaceImage: {
+        marginRight: 15
+    },
+    imagePlace: {
+        width: 80,
+        height: 80
+    },
     textArea: {
         width: "100%",
         height: 100,

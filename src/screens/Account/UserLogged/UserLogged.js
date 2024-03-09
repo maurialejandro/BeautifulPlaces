@@ -7,10 +7,12 @@ import {useNavigation} from "@react-navigation/native";
 import {useUserLogout} from "../../../context/AuthContext";
 import {apiLogout} from "../../../api/apiUser";
 import {myToast} from "../../../components/Elements/myToast";
+import {useRemovePlaceContext} from "../../../context/PlaceContext";
 
 export function UserLogged(){
 
     const logout = useUserLogout();
+    const removePlace = useRemovePlaceContext();
     const [_, setReload] = useState(false);
     const navigation = useNavigation();
     const onReload = () => setReload((prevState) => !prevState);
@@ -18,7 +20,12 @@ export function UserLogged(){
         const res = await apiLogout();
         if(res.data.status === 200){
             myToast('Logged out');
+            await removePlace();
             await logout();
+            navigation.reset({
+                index: 0,
+                routes: [{ name: 'Mis Lugares' }]
+            })
             return;
         }
         myToast('Algo sucedio');

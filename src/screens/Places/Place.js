@@ -1,12 +1,26 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { ScrollView, Dimensions} from "react-native";
+import {Icon} from "@rneui/base";
+import CarouselImages from "../../components/Places/Carousel";
 
-export default function Place(){
+export default function Place({route}){
+    const { place } = route.params;
+    const screenWidth = Dimensions.get("window").width
+
     return (
-        <View>
-            <Text>
-                Place Detail
-            </Text>
-        </View>
+        <ScrollView>
+            <Icon
+                type='material-community'
+                name={ "heart" }
+                color={"#f00"}
+                size={35}
+                underlayColor="transparent"
+            />
+            <CarouselImages
+                files={place.item.files}
+                height={250}
+                width={screenWidth}
+            />
+        </ScrollView>
     );
 }

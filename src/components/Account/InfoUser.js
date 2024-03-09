@@ -9,7 +9,7 @@ import {storeAvatar} from "../../api/apiUser";
 import {myToast} from "../Elements/myToast";
 const apiUrl = process.env.API_URL;
 
-export function InfoUser(){
+export function InfoUser(props){
     const user = useAuthContext();
     const updateUser = useUserUpdateData();
     const [ image, setImage ] = useState(null);

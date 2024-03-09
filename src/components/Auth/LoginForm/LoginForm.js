@@ -31,7 +31,11 @@ export function LoginForm(props){
         }
         if(res.status === 200){
             await login(res.user);
-            nav.navigate('Places');
+            //nav.navigate('Places');
+            nav.reset({
+                index: 0,
+                routes: [{ name: 'Mis Lugares' }]
+            })
         }
         setIsLoading(false);
     };
