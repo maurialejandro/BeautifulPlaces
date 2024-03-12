@@ -7,17 +7,18 @@ import {useNavigation} from "@react-navigation/native";
 import ListPlaces from "../../components/Places/ListPlaces";
 import {getPlaces} from "../../api/apiPlace";
 import {useAddPlaceContext, usePlaceContext} from "../../context/PlaceContext";
+import {Loading} from "../../components/Elements/Loading";
 
 export function Places(){
 
     const user = useAuthContext();
     const navigation = useNavigation();
-    const [ isLoading, setIsLoading ] = useState(false)
     const places = usePlaceContext();
     const addPlaces = useAddPlaceContext();
 
     useEffect(() => {
         (async() => {
+            console.log('GETPLACES');
             if(user.isLogged){
                 await getPlacesBack()
             }
@@ -26,6 +27,7 @@ export function Places(){
 
     const getPlacesBack = async () => {
         const res = await getPlaces();
+
         if(res.places.length === 0){
             return;
         }
@@ -37,12 +39,12 @@ export function Places(){
         <View
             style={styles.viewPlacesBody}
         >{
-            places[0].name && (
+            places[0].name ? (
                 <ListPlaces
-                    isLoading={isLoading}
-                    places={places}
                     nav={navigation}
                 />
+            ) : (
+                <Loading text={"Cargando lugares"} />
             )
         }
             {
@@ -51,6 +53,7 @@ export function Places(){
                         reverse
                         type="material-community"
                         name="plus"
+                        style={styles.iconPlaces}
                         color="#FFB534"
                         onPress={() => navigation.navigate('add-place')}
                     />

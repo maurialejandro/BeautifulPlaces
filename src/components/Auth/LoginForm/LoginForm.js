@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, TextInput, StyleSheet } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { CustomButton } from "../../Elements/CustomButton";
-import Toast from "react-native-root-toast";
+import { Input } from '@rneui/themed';
 import { userLogin } from "../../../api/apiUser";
 import { useUserLoginContext } from "../../../context/AuthContext";
 import {CustomLoading} from "../../Elements/CustomLoading";
@@ -31,7 +31,6 @@ export function LoginForm(props){
         }
         if(res.status === 200){
             await login(res.user);
-            //nav.navigate('Places');
             nav.reset({
                 index: 0,
                 routes: [{ name: 'Mis Lugares' }]
@@ -51,39 +50,36 @@ export function LoginForm(props){
                                 required: true
                             }}
                             render={({ field: { onChange, onBlur, value } }) => (
-                                <TextInput
-                                    placeholder="Email"
+                                <Input
+                                    placeholder="Correo"
                                     onBlur={onBlur}
+                                    style={styles.inputForm}
                                     onChangeText={onChange}
-                                    style={styles.input}
                                     value={value}
-                                    placeholderTextColor="#ffffff"
-                                    cursorColor="#ffffff"
+                                    errorMessage={errors.email ? "Correo requerido" : ""}
                                 />
                             )}
                             name="email"
                         />
-                        {errors.email && <Text style={styles.txt} > Email es requerido </Text>}
                         <Controller
                             control={control}
                             rules={{
                                 required: true
                             }}
                             render={({ field: { onChange, onBlur, value } }) => (
-                                <TextInput
-                                    placeholder="password"
+                                <Input
+                                    placeholder="Contraseña"
                                     onBlur={onBlur}
+                                    style={styles.inputForm}
+                                    labelStyle={{ color: "red" }}
                                     secureTextEntry={true}
-                                    style={styles.input}
                                     onChangeText={onChange}
                                     value={value}
-                                    placeholderTextColor="#ffffff"
-                                    cursorColor="#ffffff"
+                                    errorMessage={errors.password ? "Contraseña es requerida" : "" }
                                 />
                             )}
                             name="password"
                         />
-                        {errors.password && <Text style={styles.txt} > Password es requerida </Text>}
                         <CustomButton
                             title="Login"
                             onPress={handleSubmit(onSubmit)}

@@ -73,7 +73,7 @@ function getMenuOptions(selectedComponent) {
             onPress: () => selectedComponent("displayName"),
         },
         {
-            title: "Cambiar Email",
+            title: "Cambiar Correo",
             iconType: "material-community",
             iconNameLeft: "at",
             iconColorLeft: "#ccc",
@@ -82,7 +82,7 @@ function getMenuOptions(selectedComponent) {
             onPress: () => selectedComponent("email"),
         },
         {
-            title: "Cambiar contraseña",
+            title: "Cambiar Contraseña",
             iconType: "material-community",
             iconNameLeft: "lock-reset",
             iconColorLeft: "#ccc",

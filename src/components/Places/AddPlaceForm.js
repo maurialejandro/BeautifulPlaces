@@ -1,17 +1,20 @@
 import React, {useState} from "react";
 import {Platform, Text, TextInput, View} from "react-native";
 import {styles} from "../styles";
-import {Icon} from "@rneui/themed";
+import {Icon, Input} from "@rneui/themed";
 import {useForm, Controller} from "react-hook-form";
 import {CustomButton} from "../Elements/CustomButton";
 import UploadedImages from "./UploadedImages";
 import {storeImagesPlace, storePlace} from "../../api/apiPlace";
 import {myToast} from "../Elements/myToast";
+import {useNavigation} from "@react-navigation/native";
+import {useRemovePlaceContext} from "../../context/PlaceContext";
 
 export default function AddPlaceForm(props) {
 
     const [resImageStatus, setResImageStatus] = useState(false);
-
+    const navigation = useNavigation();
+    const removePlace = useRemovePlaceContext();
     const { setIsVisibleMap,
         location,
         images,
@@ -38,7 +41,7 @@ export default function AddPlaceForm(props) {
             myToast('Error al guardar lugar');
             return;
         }
-            let formData = new FormData()
+            let formData = new FormData();
             images.map(async (file, index) => {
                 const response = await fetch(file)
                 const blob = await response.blob()
@@ -56,7 +59,12 @@ export default function AddPlaceForm(props) {
                 }
             })
             if(!resImageStatus){
-                myToast('Lugar almacenado');
+                    myToast('Lugar almacenado');
+                    await removePlace();
+                    navigation.reset({
+                        index: 0,
+                        routes: [{ name: "places" }]
+                    });
             } else {
                 myToast('Error al almacenar');
             }
@@ -74,14 +82,12 @@ export default function AddPlaceForm(props) {
                         required: true
                     }}
                     render={({ field: { onChange, onBlur, value } }) => (
-                        <TextInput
+                        <Input
                             placeholder="Nombre del lugar"
                             onBlur={onBlur}
-                            style={styles.inputInto}
+                            style={styles.inputForm}
                             onChangeText={onChange}
                             value={value}
-                            placeholderTextColor="#ffffff"
-                            cursorColor="#ffffff"
                         />
                     )}
                     name="name"
@@ -94,30 +100,33 @@ export default function AddPlaceForm(props) {
                         required: true
                     }}
                     render={({ field: { onChange, onBlur, value } }) => (
-                        <TextInput
+                        <Input
                             placeholder="Descripción"
-                            style={styles.textArea}
                             multiline={true}
                             onBlur={onBlur}
+                            style={styles.inputForm}
                             onChangeText={onChange}
                             value={value}
-                            placeholderTextColor="#ffffff"
-                            cursorColor="#ffffff"
+                            rightIcon={
+                                <Icon
+                                    type="material-community"
+                                    name="google-maps"
+                                    onPress={() => setIsVisibleMap(true)}
+                                />
+                            }
                         />
                     )}
                     name="description"
                 />
                 {errors.description && <Text style={styles.txt} > Descripción es requerida </Text>}
             </>
-            <Icon
-                reverse
-                type="material-community"
-                name="google-maps"
-                color="#FFB534"
-                onPress={() => setIsVisibleMap(true)}
-            />
+
             <UploadedImages images={images} setImages={setImages} />
-            <CustomButton title="Guardar" onPress={handleSubmit(onSubmit)} />
+            <CustomButton
+                title="Guardar"
+                onPress={handleSubmit(onSubmit)}
+                style={styles.btn}
+            />
 
         </View>
     );

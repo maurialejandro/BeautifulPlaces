@@ -1,8 +1,8 @@
-import {AxiosIntance, AxiosIntanceImage} from "./axiosInstance/AxiosInstance";
+import {AxiosInstance, AxiosIntanceImage} from "./axiosInstance/AxiosInstance";
 import {getSecureToken, saveSecureToken} from "./token/handleToken";
 
 export async function userRegister (data){
-    return await AxiosIntance.post('/register',
+    return await AxiosInstance.post('/register',
         JSON.stringify({name: data.email, email: data.email, password: data.password})
     ).then((res) => {
         return res.data;
@@ -17,7 +17,7 @@ export async function userRegister (data){
 
 export async function userLogin(data){
 
-    return await AxiosIntance.post('/login',
+    return await AxiosInstance.post('/login',
          JSON.stringify({email: data.email, password: data.password})
     ).then((res) => {
         if(res.data.status === 200 && res.data.token){
@@ -34,8 +34,8 @@ export async function userLogin(data){
 
 export async function updateNameUser(data){
     let token = await getSecureToken();
-    AxiosIntance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    return await AxiosIntance.post('/user/update-name',
+    AxiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    return await AxiosInstance.post('/user/update-name',
         JSON.stringify({name: data.name})
     ).then((res) => {
         return res.data;
@@ -48,8 +48,8 @@ export async function updateNameUser(data){
 
 export async function updateEmail(data){
     let token = await getSecureToken();
-    AxiosIntance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    return await AxiosIntance.post('/user/update-email',
+    AxiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    return await AxiosInstance.post('/user/update-email',
         JSON.stringify({ email: data.email, password: data.password })
     ).then((res) => {
         return res.data
@@ -64,8 +64,8 @@ export async function updateEmail(data){
 
 export async function updatePassword(data, email) {
     let token = await getSecureToken();
-    AxiosIntance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    return await AxiosIntance.post('/user/update-password',
+    AxiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    return await AxiosInstance.post('/user/update-password',
         JSON.stringify({ email: email, password: data.newPassword })
     ).then((res) => {
         return res.data
@@ -96,8 +96,8 @@ export async function storeAvatar(data) {
 
 export async function apiLogout(){
     let token = await getSecureToken();
-    AxiosIntance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    return await AxiosIntance.post('logout')
+    AxiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    return await AxiosInstance.post('logout')
         .then((res) => {
             return res
         })

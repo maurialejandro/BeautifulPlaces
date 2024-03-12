@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { userRegister } from '../../../api/apiUser';
-import Toast from "react-native-root-toast";
+import { Input } from '@rneui/themed';
 import { useNavigation } from "@react-navigation/native";
 import { CustomButton } from "../../Elements/CustomButton";
 import {CustomLoading} from "../../Elements/CustomLoading";
@@ -51,59 +51,54 @@ export function RegisterForm(){
                                 required: true
                             }}
                             render={({ field: {onChange, onBlur, value} }) => (
-                                <TextInput
-                                    placeholder='Email'
+                                <Input
+                                    placeholder="Correo"
                                     onBlur={onBlur}
+                                    style={styles.inputForm}
+                                    errorMessage={errors.email ? "Debe ingresar correo": ""}
                                     onChangeText={onChange}
                                     value={value}
-                                    style={styles.input}
-                                    placeholderTextColor="#ffffff"
-                                    cursorColor="#ffffff"
                                 />
                             )}
                             name="email"
                         />
-                        {errors.email && <Text> Debe ingresar email </Text>}
                         <Controller
                             control={control}
                             rules={{
                                 required: true
                             }}
                             render={({ field: {onBlur, onChange, value} }) => (
-                                <TextInput
-                                    placeholder='Password'
+                                <Input
+                                    placeholder="Contraseña"
                                     secureTextEntry={true}
                                     onBlur={onBlur}
+                                    style={styles.inputForm}
+                                    errorMessage={errors.password ? "debe ingresar contraseña" : ""}
                                     onChangeText={onChange}
                                     value={value}
-                                    style={styles.input}
-                                    placeholderTextColor="#ffffff"
-                                    cursorColor="#ffffff"
                                 />
+
                             )}
                             name="password"
                         />
-                        {errors.password && <Text style={styles.txt} > Debe ingresar password </Text>}
                         <Controller
                             control={control}
                             rules={{
                                 required: true
                             }}
                             render={({ field: {onBlur, onChange, value} }) => (
-                                <TextInput
-                                    placeholder='Re-Password'
+                                <Input
+                                    placeholder="Reingresar contraseña"
                                     secureTextEntry={true}
                                     onBlur={onBlur}
+                                    errorMessage={errors.rePassword ? "Debe ingresar re-contraseña" : ""}
+                                    style={styles.inputForm}
                                     onChangeText={onChange}
                                     value={value}
-                                    style={styles.input}
-                                    placeholderTextColor="#ffffff"
-                                    cursorColor="#ffffff"
                                 />
                             )}
                             name="rePassword"
                         />
-                        {errors.password && <Text style={styles.txt} > Debe ingresar re-password </Text>}
                         <CustomButton
                             title="Registrarme"
                             onPress={handleSubmit(onSubmit)}

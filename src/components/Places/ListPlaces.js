@@ -1,9 +1,7 @@
-import React, {useEffect, useState} from 'react';
-import {View, Text, TouchableOpacity, FlatList, ActivityIndicator} from 'react-native';
-import { Image } from '@rneui/themed';
-import {size} from "lodash";
+import React from 'react';
+import {FlatList} from 'react-native';
 import RenderPlace from "./RenderPlace";
-import * as PropTypes from "prop-types";
+import {usePlaceContext} from "../../context/PlaceContext";
 
 
 function FooterList(props) {
@@ -12,24 +10,18 @@ function FooterList(props) {
 
 FooterList.propTypes = {};
 export default function ListPlaces(props){
-    const { places, nav, isLoading } = props
+    // now using context
+    const { nav, isLoading } = props
+    const places = usePlaceContext();
+
     return(
-        <View>
-            {size(places) > 0 ? (
-                <FlatList
-                    data={places}
-                    renderItem={(place) => <RenderPlace navigation={nav} place={place}/>}
-                    keyExtractor={(item, index) => index.toString()}
-                    onEndReachedThreshold={0.5}
-                    ListFooterComponent={<FooterList isLoading={isLoading} />}
-                />
-            ) : (
-                <View >
-                    <ActivityIndicator size="large" />
-                    <Text>Cargando lugares</Text>
-                </View>
-            )}
-        </View>
+        <FlatList
+            data={places}
+            renderItem={(place) => <RenderPlace navigation={nav} place={place}/>}
+            keyExtractor={(item, index) => index.toString()}
+            onEndReachedThreshold={0.5}
+            ListFooterComponent={<FooterList isLoading={isLoading} />}
+        />
     )
 }
 

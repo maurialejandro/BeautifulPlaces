@@ -2,6 +2,7 @@ import {View, Text, TextInput} from "react-native";
 import {CustomButton} from "../Elements/CustomButton";
 import { Controller, useForm } from "react-hook-form";
 import {styles} from "../styles";
+import { Input } from "@rneui/themed";
 import {useAuthContext, useUserLogout, useUserUpdateData} from "../../context/AuthContext";
 import {apiLogout, updatePassword} from "../../api/apiUser";
 import {myToast} from "../Elements/myToast";
@@ -43,14 +44,11 @@ export function ChangePasswordForm(props){
                     required: true
                 }}
                 render={({ field: { onChange, onBlur, value } })=> (
-                    <TextInput
-                        placeholder="Actual password"
+                    <Input
+                        placeholder="Actual contraseña"
                         onBlur={onBlur}
                         onChangeText={onChange}
-                        style={styles.inputModal}
                         value={value}
-                        placeholderTextColor="#ffffff"
-                        cursorColor="#ffffff"
                     />
                 )}
                 name="password"
@@ -62,14 +60,11 @@ export function ChangePasswordForm(props){
                     required: true
                 }}
                 render={({ field: { onChange, onBlur, value } })=> (
-                    <TextInput
-                        placeholder="Nueva password"
+                    <Input
+                        placeholder="Nueva contraseña"
                         onBlur={onBlur}
                         onChangeText={onChange}
-                        style={styles.inputModal}
                         value={value}
-                        placeholderTextColor="#ffffff"
-                        cursorColor="#ffffff"
                     />
                 )}
                 name="newPassword"
@@ -81,14 +76,11 @@ export function ChangePasswordForm(props){
                     required: true
                 }}
                 render={({ field: { onChange, onBlur, value } })=> (
-                    <TextInput
-                        placeholder="Repetir nueva password"
+                    <Input
+                        placeholder="Repetir nueva contraseña"
                         onBlur={onBlur}
                         onChangeText={onChange}
-                        style={styles.inputModal}
                         value={value}
-                        placeholderTextColor="#ffffff"
-                        cursorColor="#ffffff"
                     />
                 )}
                 name="repeatNewPassword"

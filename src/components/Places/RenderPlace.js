@@ -8,6 +8,7 @@ const apiUrl = process.env.API_URL;
 export default function RenderPlace(props){
     const { place, navigation } = props
     const { place_id, id, files, name, description } = place.item;
+
     const goToPlato = () => {
         navigation.navigate('place', {place: place});
     }

@@ -1,6 +1,7 @@
 import {View, Text, TextInput} from "react-native";
 import {CustomButton} from "../Elements/CustomButton";
 import { Controller, useForm } from "react-hook-form";
+import { Input } from "@rneui/themed";
 import {styles} from "../styles";
 import {apiLogout, updateEmail} from "../../api/apiUser";
 import {myToast} from "../Elements/myToast";
@@ -51,14 +52,11 @@ export function ChangeEmailForm(props){
                     required: true
                 }}
                 render={({ field: { onChange, onBlur, value } })=>(
-                    <TextInput
-                        placeholder="Email"
+                    <Input
+                        placeholder="Correo"
                         onBlur={onBlur}
                         onChangeText={onChange}
-                        style={styles.inputModal}
                         value={value}
-                        placeholderTextColor="#ffffff"
-                        cursorColor="#ffffff"
                     />
                 )}
                 name="email"
@@ -70,14 +68,11 @@ export function ChangeEmailForm(props){
                     required: true
                 }}
                 render={({ field: { onChange, onBlur, value }  }) =>(
-                    <TextInput
-                        placeholder="Password"
+                    <Input
+                        placeholder="Contraseña"
                         onBlur={onBlur}
                         onChangeText={onChange}
-                        style={styles.inputModal}
                         value={value}
-                        placeholderTextColor="#ffffff"
-                        cursorColor="#ffffff"
                     />
                 )}
                 name="password"

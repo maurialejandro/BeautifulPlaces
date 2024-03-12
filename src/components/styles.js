@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
         height: 200
     },
     container: {
-        width: "70%"
+        width: "80%"
     },
     containerImg:{
         width: "100%",
@@ -52,16 +52,9 @@ export const styles = StyleSheet.create({
         paddingLeft: 10,
         color: "#ffffff"
     },
-    input: {
+    inputForm: {
         width: "100%",
-        height: 50,
-        marginTop: 20,
-        borderCurve: "circular",
-        opacity: 0.5,
-        backgroundColor: "#000000",
-        borderRadius: 16,
-        paddingLeft: 10,
-        color: "#ffffff"
+        fontSize: 15,
     },
     txt: {
         color: "#000000"
@@ -102,7 +95,6 @@ export const styles = StyleSheet.create({
     },
     viewPlacesBody: {
         flex: 1,
-        backgroundColor: "#fff"
     },
     btnContainer: {
         position: "absolute",
@@ -126,7 +118,8 @@ export const styles = StyleSheet.create({
         height: 40,
         padding: 10,
         marginTop: 15,
-        elevation: 3
+        elevation: 3,
+        marginBottom: 5
     },
     viewBtnModal: {
         marginTop: "-30%",
@@ -156,4 +149,13 @@ export const styles = StyleSheet.create({
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height,
     },
+    iconPlaces: {
+        position: "relative",
+
+    },
+    loadingView: {
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+    }
 })
