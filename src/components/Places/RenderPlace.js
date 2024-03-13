@@ -10,7 +10,7 @@ export default function RenderPlace(props){
     const { place_id, id, files, name, description } = place.item;
 
     const goToPlato = () => {
-        navigation.navigate('place', {place: place});
+        navigation.navigate({name: 'place', params: place.item});
     }
     return(
         <TouchableOpacity key={id + place_id}  onPress={() => goToPlato()}>
@@ -20,14 +20,20 @@ export default function RenderPlace(props){
                         resizeMode="cover"
                         PlaceholderContent={<ActivityIndicator color="#000"/>}
                         source={
-                            files ? { uri : `${apiUrl}/file/${files[0].file}` } : require("../../../assets/default-image.png")
+                            files ? { uri : `${apiUrl}/file/${files[0]?.file}` } : require("../../../assets/default-image.png")
                         }
                         style={styles.imagePlace}
                     />
                 </View>
                 <View>
-                    <Text>{name}</Text>
-                    <Text>{description.substr(0, 36)}...</Text>
+                    <Text style={styles.txtNamePlace} >{name}</Text>
+                    <Text style={styles.txtInfoPlace} >
+                        {
+                            description.length > 35
+                                ?  description.substr(0, 35)+'...'
+                                :  description
+                        }
+                    </Text>
                 </View>
 
             </View>

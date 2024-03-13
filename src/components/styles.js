@@ -3,14 +3,13 @@ import { StyleSheet, Dimensions } from "react-native";
 export const styles = StyleSheet.create({
     imgPlace: {
         width: '100px',
-        height: 200
+        height: 220,
     },
     container: {
         width: "80%"
     },
     containerImg:{
         width: "100%",
-        marginTop: -15,
     },
     containerPlaceForm: {
         flex: 1,
@@ -109,6 +108,12 @@ export const styles = StyleSheet.create({
     },
     text: {
         color: "#000000"
+    },
+    txtNamePlace: {
+        fontWeight: "bold"
+    },
+    txtInfoPlace: {
+        color: "#828282",
     },
     btn: {
         alignItems: "center",

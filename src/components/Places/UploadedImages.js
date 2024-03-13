@@ -33,7 +33,6 @@ export default function UploadedImages (props){
             { compress: 0.5, format: ImageManipulator.SaveFormat.JPEG }
         )
         await setImages([...images, file.uri]);
-        console.log(images);
     }
     const removeImage = (image) => {
         Alert.alert(

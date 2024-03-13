@@ -34,9 +34,9 @@ export const PlaceProvider = (props) => {
     }
 
     const removePlaces = () => {
-        console.log('REMOVEPLACE');
         setPlace(placeData);
     }
+
 
     return (
         <placeContext.Provider value={places}>

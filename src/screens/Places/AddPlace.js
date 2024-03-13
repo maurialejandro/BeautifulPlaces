@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {View, Text, Button, ScrollView} from "react-native";
+import {View, ScrollView} from "react-native";
 import AddPlaceForm from "../../components/Places/AddPlaceForm";
 import ModalMap from "../../components/Elements/ModalMap";
 import PlaceImage from "../../components/Places/PlaceImage";
@@ -12,8 +12,8 @@ export default function AddPlace(){
     const [ images, setImages ] = useState([]);
 
     return(
-            <ScrollView showsVerticalScrollIndicator={false} >
-                <PlaceImage images={images[0]} setImages={setImages} />
+            <ScrollView showsVerticalScrollIndicator={false} style={{ marginTop: -17 }} >
+                <PlaceImage images={images[0]} setImages={setImages} style={styles.img} />
                 <View style={styles.containerPlaceForm} >
                     <AddPlaceForm
                         setIsVisibleMap={setIsVisibleMap}

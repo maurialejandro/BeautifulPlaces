@@ -59,12 +59,11 @@ export default function AddPlaceForm(props) {
                 }
             })
             if(!resImageStatus){
-                    myToast('Lugar almacenado');
-                    await removePlace();
-                    navigation.reset({
-                        index: 0,
-                        routes: [{ name: "places" }]
-                    });
+                myToast('Lugar almacenado');
+                navigation.reset({
+                    index: 0,
+                    routes: [{ name: "places" }]
+                })
             } else {
                 myToast('Error al almacenar');
             }

@@ -18,16 +18,16 @@ export function Places(){
 
     useEffect(() => {
         (async() => {
-            console.log('GETPLACES');
             if(user.isLogged){
-                await getPlacesBack()
+                setTimeout(async () => {
+                    await getPlacesBack();
+                }, 1000)
             }
         })()
     }, []);
 
     const getPlacesBack = async () => {
         const res = await getPlaces();
-
         if(res.places.length === 0){
             return;
         }
