@@ -1,60 +1,41 @@
 import React, {useState} from "react";
-import {Platform, Text, TextInput, View} from "react-native";
-import {styles} from "../styles";
+import {Text, View} from "react-native";
+import {styles} from "../../components/styles";
+import { useForm, Controller } from "react-hook-form";
+import {editPlace} from "../../api/apiPlace";
+import {myToast} from "../../components/Elements/myToast";
 import {Icon, Input} from "@rneui/themed";
-import {useForm, Controller} from "react-hook-form";
-import {CustomButton} from "../Elements/CustomButton";
-import UploadedImages from "./UploadedImages";
-import {storeImagesPlace, storePlace} from "../../api/apiPlace";
-import {myToast} from "../Elements/myToast";
-import {useNavigation} from "@react-navigation/native";
-import {useRemovePlaceContext} from "../../context/PlaceContext";
-
-export default function AddPlaceForm(props) {
-
-    const navigation = useNavigation();
-    const { setIsVisibleMap,
-        location,
-        images,
-        setImages
-    } = props;
-
-    const { handleSubmit, control,
-        formState: { errors }, getValues
-    } = useForm({
+import UploadedImages from "../../components/Places/UploadedImages";
+import {CustomButton} from "../../components/Elements/CustomButton";
+import PlaceImage from "../../components/Places/PlaceImage";
+import ModalMap from "../../components/Elements/ModalMap";
+export default function EditPlace({route}){
+    const place = route.params;
+    const [ images, setImages ] = useState(place.files.map(file => file.file));
+    const [isVisibleMap, setIsVisibleMap] = useState(false);
+    const [location, setLocation] = useState({
+        latitude: parseFloat(place.lat), longitude: parseFloat(place.long), latitudeDelta: 0.007, longitudeDelta: 0.007 });
+    const { handleSubmit, control, formState: { errors }, getValues } = useForm({
         defaultValues: {
-            name: '',
-            description: '',
-            location: ''
+            name: place.name,
+            description: place.description,
+            location: place.location,
         }
     });
-
     const onSubmit = async (data) => {
-        if(!images.length || !images ){
-            myToast("Debe subir una imagen del lugar por lo menos");
-            return;
-        };
-        if(!location){
-            myToast("Debe agregar ubicación geografica");
+        const res = await editPlace(data, images, location, place.id);
+        if(res.status === 200){
+            myToast('Lugar actualizado');
         }
-        const res = await storePlace(data, location, images);
-
-        if(res.status !== 200) {
-            myToast('Error al guardar lugar');
-            return;
-        }
-        myToast('Lugar almacenado');
-        navigation.reset({
-            index: 0,
-            routes: [{ name: "places" }]
-        });
-
     }
+    return(
+        <>
+            <View style={{ marginTop: -17 }} >
+                <PlaceImage images={place.files[0].file} setImages={setImages}/>
 
+            </View>
+        <View style={styles.contentViewHeader} >
 
-    return (
-        <View style={styles.container} >
-            <>
                 <Controller
                     control={control}
                     rules={{
@@ -64,15 +45,14 @@ export default function AddPlaceForm(props) {
                         <Input
                             placeholder="Nombre del lugar"
                             onBlur={onBlur}
-                            style={styles.inputForm}
                             onChangeText={onChange}
+                            style={styles.inputForm}
                             value={value}
                         />
                     )}
                     name="name"
                 />
                 {errors.name && <Text style={styles.txt} > Nombre es requerido </Text>}
-
                 <Controller
                     control={control}
                     rules={{
@@ -83,14 +63,14 @@ export default function AddPlaceForm(props) {
                             placeholder="Descripción"
                             multiline={true}
                             onBlur={onBlur}
-                            style={styles.inputForm}
                             onChangeText={onChange}
                             value={value}
+                            style={styles.inputForm}
                         />
                     )}
                     name="description"
                 />
-                {errors.description && <Text style={styles.txt} > Descripción es requerida </Text>}
+                {errors.description && <Text> Descripción es requerida </Text>}
 
                 <Controller
                     control={control}
@@ -116,15 +96,22 @@ export default function AddPlaceForm(props) {
                     name="location"
                 />
                 {errors.location && <Text style={styles.txt} > Ubicación es requerida </Text>}
-            </>
 
-            <UploadedImages images={images} setImages={setImages} />
+            <UploadedImages
+                images={images} setImages={setImages}
+            />
             <CustomButton
-                title="Guardar"
+                title="Actualizar"
                 onPress={handleSubmit(onSubmit)}
                 style={styles.btn}
             />
-
+            <ModalMap
+                isVisibleMap={isVisibleMap}
+                setIsVisibleMap={setIsVisibleMap}
+                location={location}
+                setLocation={setLocation}
+            />
         </View>
+        </>
     );
 }

@@ -23,13 +23,15 @@ export default function ModalMap (props){
                 setErrorMsg('Permisos para acceder a la localizacion ha sido denegada');
                 return;
             }
-            let location = await Location.getCurrentPositionAsync({});
-            await setLocation({
-                latitude: location.coords.latitude,
-                longitude: location.coords.longitude,
-                latitudeDelta: 0.007,
-                longitudeDelta: 0.007
-            });
+            if(!location){
+                let location = await Location.getCurrentPositionAsync({});
+                await setLocation({
+                    latitude: location.coords.latitude,
+                    longitude: location.coords.longitude,
+                    latitudeDelta: 0.007,
+                    longitudeDelta: 0.007
+                });
+            }
         })()
     }, []);
 
@@ -48,6 +50,7 @@ export default function ModalMap (props){
                         showsUserLocation={true}
                         initialRegion={location}
                         mapType="standard"
+                        onRegionChange={(locationTemp) => setLocation(locationTemp)}
                     >
                         <Marker
                             coordinate={{

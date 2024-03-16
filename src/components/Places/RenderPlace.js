@@ -7,7 +7,7 @@ const apiUrl = process.env.API_URL;
 
 export default function RenderPlace(props){
     const { place, navigation } = props
-    const { place_id, id, files, name, description } = place.item;
+    const { place_id, id, files, name, description, location } = place.item;
 
     const goToPlato = () => {
         navigation.navigate({name: 'place', params: place.item});
@@ -27,11 +27,18 @@ export default function RenderPlace(props){
                 </View>
                 <View>
                     <Text style={styles.txtNamePlace} >{name}</Text>
-                    <Text style={styles.txtInfoPlace} >
+                    <Text style={styles.txtListPlace} >
                         {
                             description.length > 35
                                 ?  description.substr(0, 35)+'...'
                                 :  description
+                        }
+                    </Text>
+                    <Text style={styles.txtListPlace} >
+                        {
+                            location.length > 35
+                                ?  location.substr(0, 35)+'...'
+                                :  location
                         }
                     </Text>
                 </View>

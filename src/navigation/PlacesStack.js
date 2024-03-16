@@ -2,6 +2,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { Places } from "../screens/Places/Places";
 import Place from "../screens/Places/Place";
 import AddPlace from "../screens/Places/AddPlace";
+import EditPlace from "../screens/Places/EditPlace";
 
 export function PlacesStack(){
     const Stack = createStackNavigator();
@@ -11,7 +12,7 @@ export function PlacesStack(){
             screenOptions={{
                 cardStyle: { backgroundColor: "#ffffff" },
                 headerStyle: {
-                    backgroundColor: "#FFB534",
+                    backgroundColor: "#55B4B0",
                     borderBottomLeftRadius: 20,
                     borderBottomRightRadius: 20,
                     borderBottomWidth: 0.2,
@@ -36,6 +37,11 @@ export function PlacesStack(){
                 name='add-place'
                 component={AddPlace}
                 options={{title: "Añadir nuevo lugar"}}
+            />
+            <Stack.Screen
+                name='edit-place'
+                component={EditPlace}
+                options={{ title: "Editar Lugar" }}
             />
         </Stack.Navigator>
     )

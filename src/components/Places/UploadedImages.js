@@ -1,16 +1,18 @@
 import React from "react";
-import {View, Text, Alert} from "react-native";
+import {View, Text, Alert, Platform} from "react-native";
 import {filter, size} from "lodash";
 import {Avatar} from "@rneui/base";
 import {Icon} from "@rneui/themed";
 import * as ImagePicker from "expo-image-picker";
 import * as ImageManipulator from "expo-image-manipulator";
 import {styles} from "../styles";
+import {myToast} from "../Elements/myToast";
+import {storeImagesPlace, deleteStoreFile} from "../../api/apiPlace";
+const apiUrl = process.env.API_URL;
 
 export default function UploadedImages (props){
     const { images, setImages } = props;
     const [status, requestPermission] = ImagePicker.useMediaLibraryPermissions();
-
     const selectImage = async () => {
         await requestPermission();
         if(status.status === 'granted'){
@@ -32,7 +34,28 @@ export default function UploadedImages (props){
             ],
             { compress: 0.5, format: ImageManipulator.SaveFormat.JPEG }
         )
-        await setImages([...images, file.uri]);
+        await uploadImage(file.uri);
+    }
+
+    const uploadImage = async (uri) => {
+        let formData = new FormData();
+        const response = await fetch(uri);
+        const blob = await response.blob();
+        formData.append('image', {
+            file: blob,
+            uri: Platform.OS === 'ios' ? uri.replace('file://', ''): uri,
+            type: blob.type,
+            size: blob.size,
+            name: blob._data.name
+        });
+        const imageRes = await storeImagesPlace(formData);
+        if(imageRes.status === 200){
+            await setImages([...images, imageRes.file]);
+            myToast('Imagen subida satisfactoriamente');
+        }
+        if(imageRes.status === 400){
+            myToast('Error al subir imagen');
+        }
     }
     const removeImage = (image) => {
         Alert.alert(
@@ -40,16 +63,21 @@ export default function UploadedImages (props){
             "¿Estas seguro que quieres eliminar imagen?",
             [
                 {
-                    text: "Calncelar",
+                    text: "Cancelar",
                     onPress: () => console.log("cancel"),
                     style: "cancel"
                 },
                 {
                     text: "Eliminar",
-                    onPress: () => {
-                        setImages(
-                            filter(images, (imageUrl) => imageUrl !== image)
-                        )
+                    onPress: async  () => {
+                        const resDelete = await deleteStoreFile(image);
+                        if(resDelete.status === 200){
+                            setImages(
+                                filter(images, (imageUrl) => imageUrl !== image)
+                            )
+                            return;
+                        }
+                        myToast("Algo ocurrio");
                     }
                 }
             ],
@@ -71,7 +99,7 @@ export default function UploadedImages (props){
                 <Avatar
                     key={index}
                     source={{
-                        uri:file
+                        uri:  `${apiUrl}/file/${file}`
                     }}
                     containerStyle={{margin: 7}}
                     size="medium"

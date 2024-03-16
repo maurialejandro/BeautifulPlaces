@@ -8,6 +8,7 @@ import ListPlaces from "../../components/Places/ListPlaces";
 import {getPlaces} from "../../api/apiPlace";
 import {useAddPlaceContext, usePlaceContext} from "../../context/PlaceContext";
 import {Loading} from "../../components/Elements/Loading";
+import {useNetInfoContext} from "../../context/NetInfoContext";
 
 export function Places(){
 
@@ -15,6 +16,7 @@ export function Places(){
     const navigation = useNavigation();
     const places = usePlaceContext();
     const addPlaces = useAddPlaceContext();
+    const netInfoState = useNetInfoContext();
 
     useEffect(() => {
         (async() => {
@@ -49,14 +51,17 @@ export function Places(){
         }
             {
                 user.isLogged && (
-                    <Icon
-                        reverse
-                        type="material-community"
-                        name="plus"
-                        style={styles.iconPlaces}
-                        color="#FFB534"
-                        onPress={() => navigation.navigate('add-place')}
-                    />
+                    <View style={styles.iconPlaces} >
+                        <Icon
+                            reverse
+                            type="material-community"
+                            name="plus"
+                            color="#ACF6C8"
+                            iconStyle={{ color: "#000000" }}
+                            onPress={() => navigation.navigate('add-place')}
+                        />
+                    </View>
+
                 )
             }
         </View>

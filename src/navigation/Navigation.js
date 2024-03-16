@@ -20,7 +20,7 @@ export function Navigation (){
                     borderTopRightRadius: 20,
                     borderStartWidth: 0.2,
                     borderEndWidth: 0.2,
-                    backgroundColor: "#FFB534",
+                    backgroundColor: "#55B4B0",
                 },
                 tabBarIcon: ({ focused, color, size }) => screenOptions(focused, route, color = "#ffffff", size= 27),
                 tabBarLabelStyle: { color: "#000000", fontSize: 10, marginBottom: 2, marginTop: -3 }

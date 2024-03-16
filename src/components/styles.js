@@ -1,12 +1,19 @@
 import { StyleSheet, Dimensions } from "react-native";
 
 export const styles = StyleSheet.create({
+    containerIconPlace: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingHorizontal: 5,
+        marginTop: -35
+    },
     imgPlace: {
         width: '100px',
         height: 220,
     },
     container: {
-        width: "80%"
+        width: "90%"
     },
     containerImg:{
         width: "100%",
@@ -107,19 +114,24 @@ export const styles = StyleSheet.create({
         shadowOpacity: 0.5
     },
     text: {
-        color: "#000000"
+        fontSize: 15,
+        color: "#000000",
     },
     txtNamePlace: {
         fontWeight: "bold"
     },
-    txtInfoPlace: {
+    txtListPlace: {
         color: "#828282",
+    },
+    txtInfoPlace: {
+        fontSize: 17,
+        fontWeight: "bold",
+        marginLeft: 15
     },
     btn: {
         alignItems: "center",
         borderRadius: 16,
-        backgroundColor: "#C1F2B0",
-        width: "40%",
+        backgroundColor: "#ACF6C8",
         height: 40,
         padding: 10,
         marginTop: 15,
@@ -154,13 +166,48 @@ export const styles = StyleSheet.create({
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height,
     },
+    contentMap: {
+        height: 215,
+        width: "100%",
+    },
     iconPlaces: {
-        position: "relative",
-
+        position: "absolute",
+        bottom: 10,
+        right: 10
+    },
+    iconPlace: {
+        flex: 1,
+        position: "absolute",
     },
     loadingView: {
         flex: 1,
         alignItems: "center",
         justifyContent: "center",
+    },
+    rating:{
+        paddingVertical: 10,
+    },
+    titleViewHeader: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+    },
+    contentViewHeader: {
+        margin: 15,
+    },
+    txtName: {
+        fontSize: 20,
+        fontWeight: "bold",
+    },
+    txtDescription: {
+        marginTop: 5,
+        color: "#828282",
+    },
+    contentViewMap: {
+        marginHorizontal: 15,
+        marginTop: 20,
+    },
+    viewInfoPlace: {
+        marginTop: 15
     }
 })

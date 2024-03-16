@@ -16,7 +16,7 @@ export function AccountStack(){
             screenOptions={{
                 cardStyle: { backgroundColor: "#ffffff" },
                 headerStyle: {
-                    backgroundColor: "#FFB534",
+                    backgroundColor: "#55B4B0",
                     borderBottomLeftRadius: 20,
                     borderBottomRightRadius: 20,
                     borderBottomWidth: 0.2,
