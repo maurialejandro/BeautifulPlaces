@@ -25,13 +25,15 @@ export function Places(){
                 setTimeout(async () => {
                     await getPlacesBack();
                 }, 1000)
+            } else {
+                setIsVisibleLoading(false)
             }
-            setIsVisibleLoading(false);
-        })()
+        })();
     }, []);
 
     const getPlacesBack = async () => {
         const res = await getPlaces();
+        setIsVisibleLoading(false);
         if(res.places.length === 0){
             return;
         }
@@ -44,27 +46,23 @@ export function Places(){
             style={styles.viewPlacesBody}
         >
             {
-                places[0].name && (
+                (places[0].name && user.isLogged) ? (
                     <ListPlaces
                         nav={navigation}
                     />
+                ) : (
+                    (isVisibleLoading === true) ? (
+                        <Loading text={"Cargando lugares"} />
+                    ) : (
+                        !user.isLogged ? (
+                            <NotLogged />
+                        ) : (
+                            <NotPlaces />
+                        )
+                    )
                 )
             }
-            {
-                (isVisibleLoading === true) && (
-                    <Loading text={"Cargando lugares"} />
-                )
-            }
-            {
-                (!places[0].name && isVisibleLoading === false && user.isLogged)  && (
-                    <NotPlaces />
-                )
-            }
-            {
-                !user.isLogged && (
-                    <NotLogged />
-                )
-            }
+
             {
                 user.isLogged && (
                     <View style={styles.iconPlaces} >

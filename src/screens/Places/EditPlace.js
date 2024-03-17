@@ -29,7 +29,6 @@ export default function EditPlace({route}){
     });
     const onSubmit = async (data) => {
         const res = await editPlace(data, images, location, place.id);
-        console.log(res);
         if(res.status === 200){
             myToast('Lugar actualizado');
             await removePlaces();
