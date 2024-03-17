@@ -1,6 +1,11 @@
 import { StyleSheet, Dimensions } from "react-native";
 
 export const styles = StyleSheet.create({
+    viewNotLogged: {
+        marginTop: 100,
+        alignItems: "center",
+
+    },
     containerIconPlace: {
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -14,6 +19,9 @@ export const styles = StyleSheet.create({
     },
     container: {
         width: "90%"
+    },
+    containerNotLogged: {
+        width: "70%"
     },
     containerImg:{
         width: "100%",

@@ -9,6 +9,8 @@ import {getPlaces} from "../../api/apiPlace";
 import {useAddPlaceContext, usePlaceContext} from "../../context/PlaceContext";
 import {Loading} from "../../components/Elements/Loading";
 import {useNetInfoContext} from "../../context/NetInfoContext";
+import NotPlaces from "../../components/Places/NotPlaces";
+import NotLogged from "../../components/Places/NotLogged";
 
 export function Places(){
 
@@ -16,8 +18,7 @@ export function Places(){
     const navigation = useNavigation();
     const places = usePlaceContext();
     const addPlaces = useAddPlaceContext();
-    const netInfoState = useNetInfoContext();
-
+    const [ isVisibleLoading, setIsVisibleLoading ] = useState(true);
     useEffect(() => {
         (async() => {
             if(user.isLogged){
@@ -25,6 +26,7 @@ export function Places(){
                     await getPlacesBack();
                 }, 1000)
             }
+            setIsVisibleLoading(false);
         })()
     }, []);
 
@@ -40,15 +42,29 @@ export function Places(){
     return (
         <View
             style={styles.viewPlacesBody}
-        >{
-            places[0].name ? (
-                <ListPlaces
-                    nav={navigation}
-                />
-            ) : (
-                <Loading text={"Cargando lugares"} />
-            )
-        }
+        >
+            {
+                places[0].name && (
+                    <ListPlaces
+                        nav={navigation}
+                    />
+                )
+            }
+            {
+                (isVisibleLoading === true) && (
+                    <Loading text={"Cargando lugares"} />
+                )
+            }
+            {
+                (!places[0].name && isVisibleLoading === false && user.isLogged)  && (
+                    <NotPlaces />
+                )
+            }
+            {
+                !user.isLogged && (
+                    <NotLogged />
+                )
+            }
             {
                 user.isLogged && (
                     <View style={styles.iconPlaces} >
@@ -61,7 +77,6 @@ export function Places(){
                             onPress={() => navigation.navigate('add-place')}
                         />
                     </View>
-
                 )
             }
         </View>

@@ -1,15 +1,13 @@
 import React from "react";
 import {Dimensions, View} from "react-native";
 import Carousel from 'react-native-snap-carousel';
-import {Image, Icon} from "@rneui/themed";
+import {Image, Icon, Button} from "@rneui/themed";
 import {styles} from "../styles";
-import {myToast} from "./myToast";
 import {useNavigation} from "@react-navigation/native";
-import {deletePlace} from "../../api/apiPlace";
 const apiUrl = process.env.API_URL;
 
 export function CarouselSnap(props){
-    const {place, height} = props;
+    const {place, height, setModalIsVisible} = props;
     const { width } = Dimensions.get("window");
     const navigation = useNavigation();
 
@@ -20,14 +18,7 @@ export function CarouselSnap(props){
     }
 
     const deletePlaceApi = async () => {
-        const res = await deletePlace(place.id);
-        if(res.status === 200){
-            myToast('Eliminado');
-            navigation.reset({
-                index: 0,
-                routes: [{ name: "places" }]
-            });
-        }
+        setModalIsVisible(true);
     }
 
     const goToEditPlace = () => {

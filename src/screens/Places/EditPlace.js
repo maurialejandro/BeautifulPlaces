@@ -9,12 +9,17 @@ import UploadedImages from "../../components/Places/UploadedImages";
 import {CustomButton} from "../../components/Elements/CustomButton";
 import PlaceImage from "../../components/Places/PlaceImage";
 import ModalMap from "../../components/Elements/ModalMap";
+import {useNavigation} from "@react-navigation/native";
+import {useRemovePlaceContext} from "../../context/PlaceContext";
 export default function EditPlace({route}){
+
     const place = route.params;
     const [ images, setImages ] = useState(place.files.map(file => file.file));
     const [isVisibleMap, setIsVisibleMap] = useState(false);
     const [location, setLocation] = useState({
         latitude: parseFloat(place.lat), longitude: parseFloat(place.long), latitudeDelta: 0.007, longitudeDelta: 0.007 });
+    const navigation = useNavigation();
+    const removePlaces = useRemovePlaceContext();
     const { handleSubmit, control, formState: { errors }, getValues } = useForm({
         defaultValues: {
             name: place.name,
@@ -24,18 +29,22 @@ export default function EditPlace({route}){
     });
     const onSubmit = async (data) => {
         const res = await editPlace(data, images, location, place.id);
+        console.log(res);
         if(res.status === 200){
             myToast('Lugar actualizado');
+            await removePlaces();
+            navigation.reset({
+                index: 0,
+                routes: [{ name: "places" }]
+            });
         }
     }
     return(
         <>
-            <View style={{ marginTop: -17 }} >
-                <PlaceImage images={place.files[0].file} setImages={setImages}/>
-
-            </View>
+        <View style={{ marginTop: -17 }} >
+            <PlaceImage images={place.files[0].file} setImages={setImages}/>
+        </View>
         <View style={styles.contentViewHeader} >
-
                 <Controller
                     control={control}
                     rules={{
