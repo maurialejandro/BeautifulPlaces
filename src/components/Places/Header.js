@@ -2,23 +2,23 @@ import React, {useEffect, useState} from "react";
 import {View, Text} from "react-native";
 import {styles} from "../styles";
 import { Rating } from 'react-native-ratings';
-import {getRanking} from "../../api/apiRanking";
+import {storeRankingPlace, updateRankingPlace} from "../../api/apiRanking";
 import {myToast} from "../Elements/myToast";
 export default function Header(props){
     const { place } = props;
-    const [ ranking, setRanking ] = useState(0);
-    useEffect(() => {
-        (async () => {
-            await getRankingApi(place.id);
-        })()
-    }, []);
-    const getRankingApi = async (place_id) => {
-        const res = await getRanking(place_id);
-        if(res.status === 200){
-            setRanking(res.ranking);
+    const storeRanking = async (raiting) => {
+
+        if(place.rankings[0]?.ranking){
+            const updateRes = await updateRankingPlace(raiting, place.rankings[0].id);
+            if(updateRes.status === 200){
+                myToast('Raiting actualizado');
+            }
             return;
         }
-        myToast('Error al obtener ranking');
+        const storeRes = await storeRankingPlace(raiting, place.id);
+        if(storeRes.status === 200){
+            myToast('Raiting guardado');
+        }
     }
     return (
         <View style={styles.contentViewHeader}>
@@ -27,7 +27,12 @@ export default function Header(props){
                 <Rating
                     ratingCount={5}
                     imageSize={25}
-                    startingValue={ranking}
+                    startingValue={
+                        place.rankings[0]?.ranking ?
+                            place.rankings[0]?.ranking :
+                            0
+                    }
+                    onFinishRating={(r) => storeRanking(r)}
                 />
             </View>
             <Text style={styles.txtDescription} >{place.description}</Text>
