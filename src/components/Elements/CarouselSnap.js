@@ -24,6 +24,7 @@ export function CarouselSnap(props){
     const goToEditPlace = () => {
         navigation.navigate({ name: 'edit-place', params: place });
     }
+
     return (
         <View style={{ position: "relative" }} >
             <Carousel

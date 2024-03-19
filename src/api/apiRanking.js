@@ -13,7 +13,7 @@ export async function getRanking(id){
     });
 }
 
-export async function updateRankingPlace(ranking,ranking_id){
+export async function updateRankingPlace(ranking, ranking_id){
     let token = await getSecureToken();
     AxiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     return AxiosInstance.post('place/update-ranking',

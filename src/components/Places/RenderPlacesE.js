@@ -1,16 +1,15 @@
-import {ActivityIndicator, Text, TouchableOpacity, View} from "react-native";
-import {Image} from "@rneui/themed";
 import React from "react";
+import {ActivityIndicator, Text, TouchableOpacity, View} from "react-native";
 import {styles} from "../styles";
+import {Image} from "@rneui/themed";
 const apiUrl = process.env.API_URL;
 
-
-export default function RenderPlace(props){
-    const { place, navigation } = props
-    const { place_id, id, files, name, description, location } = place.item;
-
+export default function RenderPlacesE(props){
+    const { place, navigation } = props;
+    console.log(place);
+    const { user, place_id, id, files, name, description, location } = place.item;
     const goToPlace = () => {
-        navigation.navigate({name: 'place', params: place.item});
+        console.log('GO TO PLACE ')
     }
     return(
         <TouchableOpacity key={id + place_id}  onPress={() => goToPlace()}>
@@ -42,7 +41,9 @@ export default function RenderPlace(props){
                         }
                     </Text>
                 </View>
-
+                <View>
+                    <Text style={styles.txtNameUser}> {user.name} </Text>
+                </View>
             </View>
         </TouchableOpacity>
     )

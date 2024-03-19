@@ -3,6 +3,9 @@ import React, {useContext, useState} from "react";
 const placeContext = React.createContext();
 const addPlaceContext = React.createContext();
 const removePlaceContext = React.createContext();
+const placesContext = React.createContext();
+const addPlacesContext = React.createContext();
+const removePlacesContext = React.createContext();
 
 const placeData = [
     {
@@ -26,23 +29,48 @@ export function useAddPlaceContext(){
 export function useRemovePlaceContext(){
     return useContext(removePlaceContext);
 }
+
+export function usePlacesContext(){
+    return useContext(placesContext)
+}
+export function useAddPlacesContext(){
+    return useContext(addPlacesContext);
+}
+
+export function useRemovePlacesContext(){
+    return useContext(removePlacesContext);
+}
+
 export const PlaceProvider = (props) => {
-    const [ places, setPlace ] = useState(placeData);
+    const [ placesUser, setPlaceUser ] = useState(placeData);
+    const [ places, setPlaces ] = useState(placeData);
+    const addPlacesUser = (data) => {
+        setPlaceUser(data);
+    }
+
+    const removePlacesUser = () => {
+        setPlaceUser(placeData);
+    }
 
     const addPlaces = (data) => {
-        setPlace(data);
+        setPlaces(data);
     }
 
-    const removePlaces = () => {
-        setPlace(placeData);
+    const removePlaces = (data) => {
+        setPlaces(placeData);
     }
-
 
     return (
-        <placeContext.Provider value={places}>
-            <addPlaceContext.Provider value={addPlaces}>
-                <removePlaceContext.Provider value={removePlaces}>
-                    {props.children}
+        <placeContext.Provider value={placesUser}>
+            <addPlaceContext.Provider value={addPlacesUser}>
+                <removePlaceContext.Provider value={removePlacesUser}>
+                    <placesContext.Provider value={places}>
+                        <addPlacesContext.Provider value={addPlaces}>
+                            <removePlacesContext.Provider value={removePlaces}>
+                                {props.children}
+                            </removePlacesContext.Provider>
+                        </addPlacesContext.Provider>
+                    </placesContext.Provider>
                 </removePlaceContext.Provider>
             </addPlaceContext.Provider>
         </placeContext.Provider>

@@ -13,6 +13,13 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 5,
         marginTop: -35
     },
+    containerIconEartPlace:{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingHorizontal: 5,
+        marginTop: -10
+    },
     imgPlace: {
         width: '100px',
         height: 220,
@@ -126,6 +133,9 @@ export const styles = StyleSheet.create({
         color: "#000000",
     },
     txtNamePlace: {
+        fontWeight: "bold",
+    },
+    txtNameUser: {
         fontWeight: "bold"
     },
     txtListPlace: {
