@@ -1,10 +1,10 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { AccountStack } from "./AccountStack";
 import { PlacesStack } from "./PlacesStack";
-import { SearchStack } from "./SearchStack";
 import { FavoritesStack } from "./FavoritesStack";
 import { RankingStack } from "./RankingStack";
 import { screenOptions } from "../utils/screenOptions";
+import {ExploreStack} from "./ExploreStack";
 const Tab = createBottomTabNavigator();
 export function Navigation (){
     return(
@@ -32,7 +32,7 @@ export function Navigation (){
             />
             <Tab.Screen
                 name="Explorar"
-                component={SearchStack}
+                component={ExploreStack}
             />
             <Tab.Screen
                 name="Favoritos"

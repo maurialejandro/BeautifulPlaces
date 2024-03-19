@@ -7,7 +7,6 @@ import {myToast} from "../Elements/myToast";
 export default function Header(props){
     const { place } = props;
     const storeRanking = async (raiting) => {
-
         if(place.rankings[0]?.ranking){
             const updateRes = await updateRankingPlace(raiting, place.rankings[0].id);
             if(updateRes.status === 200){
