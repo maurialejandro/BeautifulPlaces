@@ -8,13 +8,9 @@ import {Info} from "../../components/Places/Info";
 import {Icon} from "@rneui/themed";
 import ModalToDelete from "../../components/Places/ModalToDelete";
 import {useNavigation} from "@react-navigation/native";
-
-
 export default function Place({route}){
     const place = route.params;
-
     const [ modalIsVisible, setModalIsVisible ] = useState(false);
-
     return (
         <ScrollView style={{ marginTop: -17 }} >
             <CarouselSnap

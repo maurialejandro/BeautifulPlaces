@@ -1,16 +1,15 @@
 import React from 'react';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { userRegister } from '../../../api/apiUser';
 import { Input } from '@rneui/themed';
 import { useNavigation } from "@react-navigation/native";
 import { CustomButton } from "../../Elements/CustomButton";
-import {CustomLoading} from "../../Elements/CustomLoading";
 import {myToast} from "../../Elements/myToast";
 import { styles } from "../../styles";
+import {Loading} from "../../Elements/Loading";
 
 export function RegisterForm(){
-
     const navigation = useNavigation();
     const [ isLoading, setIsLoading ] = React.useState(false);
     const { control, handleSubmit, formState: { errors } } = useForm({
@@ -20,7 +19,6 @@ export function RegisterForm(){
             rePassword: ''
         }
     });
-
     const onSubmit = async (data) => {
         setIsLoading(true);
         if(data.password !== data.rePassword){
@@ -106,12 +104,10 @@ export function RegisterForm(){
                     </>
                 ) : (
                     <>
-                        <CustomLoading />
+                        <Loading text={"Registrando"} />
                     </>
                 )
             }
-
-
         </View>
     )
 }

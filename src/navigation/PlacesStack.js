@@ -3,14 +3,12 @@ import { Places } from "../screens/Places/Places";
 import Place from "../screens/Places/Place";
 import AddPlace from "../screens/Places/AddPlace";
 import EditPlace from "../screens/Places/EditPlace";
-
 export function PlacesStack(){
     const Stack = createStackNavigator();
-
     return(
         <Stack.Navigator
             screenOptions={{
-                cardStyle: { backgroundColor: "#ffffff" },
+                cardStyle: { backgroundColor: "#EEEDED" },
                 headerStyle: {
                     backgroundColor: "#55B4B0",
                     borderBottomLeftRadius: 20,

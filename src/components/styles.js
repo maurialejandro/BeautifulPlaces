@@ -4,7 +4,6 @@ export const styles = StyleSheet.create({
     viewNotLogged: {
         marginTop: 100,
         alignItems: "center",
-
     },
     containerIconPlace: {
         flexDirection: 'row',
@@ -12,6 +11,76 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: 5,
         marginTop: -35
+    },
+    containerCard: {
+        alignItems: 'center',
+    },
+    medal: {
+        marginRight: 5,
+    },
+    content: {
+        backgroundColor: "#fff",
+        marginVertical: 10,
+        marginHorizontal: 15,
+        borderRadius: 20,
+    },
+    image: {
+        width: "100%",
+        height: 150,
+    },
+    infoContent: {
+        paddingHorizontal: 20,
+        paddingTop: 15,
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+    },
+    nameContent: {
+        flexDirection: "row",
+        alignItems: "center",
+    },
+    name: {
+        fontSize: 18,
+        fontWeight: "bold",
+    },
+    userName: {
+        color: "#828282",
+        fontSize: 15,
+    },
+    description: {
+        color: "#828282",
+        fontSize: 12,
+        paddingHorizontal: 20,
+        paddingBottom: 15,
+        paddingTop: 5,
+    },
+    location: {
+        color: "#828282",
+        fontSize: 12,
+        paddingHorizontal: 20,
+        paddingBottom: 15,
+        paddingTop: 5,
+    },
+    favorites: {
+        color: "#828282",
+        fontSize: 10,
+        marginLeft: 3,
+    },
+    contentPlaceAll: {
+        flexDirection: 'row', // Alinea los elementos horizontalmente
+        alignItems: 'center', // Alinea los elementos verticalmente
+        marginLeft: 15,
+        marginBottom: 15
+    },
+    containerViewCardPlace: {
+        borderRadius: 10,
+        overflow: "hidden",
+    },
+    containerTitleCardPlace: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingHorizontal: 1,
     },
     containerIconEartPlace:{
         flexDirection: 'row',
@@ -42,7 +111,8 @@ export const styles = StyleSheet.create({
     },
     viewPlace: {
         flexDirection: "row",
-        margin: 10
+        backgroundColor: "#ffffff",
+        margin: 7,
     },
     viewPlaceImage: {
         marginRight: 15
@@ -50,6 +120,10 @@ export const styles = StyleSheet.create({
     imagePlace: {
         width: 80,
         height: 80
+    },
+    imagePlaceCard: {
+        width: "100%",
+        height: 100
     },
     textArea: {
         width: "100%",
@@ -214,6 +288,10 @@ export const styles = StyleSheet.create({
         margin: 15,
     },
     txtName: {
+        fontSize: 20,
+        fontWeight: "bold",
+    },
+    txtTitleLoading: {
         fontSize: 20,
         fontWeight: "bold",
     },

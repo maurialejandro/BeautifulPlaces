@@ -6,7 +6,7 @@ import {useAddPlacesContext, usePlacesContext} from "../../context/PlaceContext"
 import {Loading} from "../../components/Elements/Loading";
 import {styles} from "../../components/styles";
 import {useNavigation} from "@react-navigation/native";
-import {ListAllPlaces} from "../../components/Places/ListAllPlaces";
+import {ListAllPlaces} from "../../components/Explore/ListAllPlaces";
 
 export default function Explore(){
     const addPlaces = useAddPlacesContext();
@@ -20,14 +20,14 @@ export default function Explore(){
     }, []);
     const getAllPlacesApi = async () => {
         const res = await getAllPlaces();
+        console.log(res)
         setIsVisibleLoading(false);
-        console.log(res);
         if(res.status === 200){
             await addPlaces(res.places);
         }
     }
     return(
-        <View style={styles.container} >
+        <View style={styles.viewPlacesBody} >
             {
                 isVisibleLoading && (
                     <Loading text={"Cargando lugares"}/>

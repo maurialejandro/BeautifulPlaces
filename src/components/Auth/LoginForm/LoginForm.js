@@ -1,16 +1,15 @@
 import React from "react";
-import { View, Text, TextInput, StyleSheet } from "react-native";
+import { View } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { CustomButton } from "../../Elements/CustomButton";
 import { Input } from '@rneui/themed';
 import { userLogin } from "../../../api/apiUser";
 import { useUserLoginContext } from "../../../context/AuthContext";
-import {CustomLoading} from "../../Elements/CustomLoading";
 import {myToast} from "../../Elements/myToast";
 import { styles } from "../../styles";
+import {Loading} from "../../Elements/Loading";
 
 export function LoginForm(props){
-
     const { nav } = props;
     const login = useUserLoginContext();
     const [ isLoading, setIsLoading ] = React.useState(false);
@@ -38,7 +37,6 @@ export function LoginForm(props){
         }
         setIsLoading(false);
     };
-
     return(
         <View style={styles.container} >
             {
@@ -87,7 +85,7 @@ export function LoginForm(props){
                     </>
                 ) : (
                     <>
-                        <CustomLoading />
+                        <Loading text={"Iniciando sesion"} />
                     </>
                 )
             }
