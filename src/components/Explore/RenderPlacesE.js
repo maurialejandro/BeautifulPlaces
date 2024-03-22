@@ -7,13 +7,12 @@ import {Rating} from "react-native-ratings";
 const apiUrl = process.env.API_URL;
 export default function RenderPlacesE(props){
     const { place, navigation } = props;
-    console.log(place);
-    const { user, place_id, id, files, name,
-        description, location, average_rating,
+    const { user, files, name,
+        description, location, rankings_avg_ranking,
         countFavorites
     } = place.item;
     const goToPlace = () => {
-        //navigation.navigate( '');
+        navigation.navigate({name: "place-e", params: place.item});
     }
     const calculateUploadedTime = (createdAt) => {
         const currentTime = moment();
@@ -53,16 +52,12 @@ export default function RenderPlacesE(props){
                         color="#dc3a3a"
                     />
                     <Text style={styles.favorites} >{countFavorites} favoritos</Text>
-
                     <Rating
+                        ratingCount={5}
                         imageSize={15}
                         readonly
-                        startingValue={average_rating}
+                        startingValue={rankings_avg_ranking}
                     />
-
-                </View>
-                <View style={styles.contentPlaceAll} >
-
                 </View>
             </View>
         </TouchableOpacity>

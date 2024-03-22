@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         paddingHorizontal: 5,
-        marginTop: -35
+
     },
     containerCard: {
         alignItems: 'center',
@@ -286,6 +286,16 @@ export const styles = StyleSheet.create({
     },
     contentViewHeader: {
         margin: 15,
+    },
+    contentBtnFavorite: {
+        position: "absolute",
+        top: 200,
+        right: 0,
+        backgroundColor: "#fff",
+        padding: 5,
+        paddingLeft: 10,
+        borderBottomLeftRadius: 20,
+        borderTopLeftRadius: 20,
     },
     txtName: {
         fontSize: 20,

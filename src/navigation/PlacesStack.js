@@ -3,8 +3,10 @@ import { Places } from "../screens/Places/Places";
 import Place from "../screens/Places/Place";
 import AddPlace from "../screens/Places/AddPlace";
 import EditPlace from "../screens/Places/EditPlace";
+import {usePlaceContext} from "../context/PlaceContext";
 export function PlacesStack(){
     const Stack = createStackNavigator();
+
     return(
         <Stack.Navigator
             screenOptions={{
@@ -24,7 +26,7 @@ export function PlacesStack(){
             <Stack.Screen
                 name="places"
                 component={Places}
-                options={{title: "Lugares"}}
+                options={{title: "Mis Lugares"}}
             />
             <Stack.Screen
                 name='place'

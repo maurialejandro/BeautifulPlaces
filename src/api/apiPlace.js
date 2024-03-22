@@ -77,6 +77,17 @@ export async function getAllPlaces(){
     })
 }
 
+export async function getAllPlacesRanking(){
+    let token = await getSecureToken();
+    AxiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    return AxiosInstance.post('place/get-places-ranking').then((res) => {
+        return res.data;
+    }).catch((e) => {
+        console.log(e);
+        return e;
+    })
+}
+
 export async function deletePlace(id){
     let token = await getSecureToken();
     AxiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -102,6 +113,19 @@ export async function editPlace(data, files, location, id_place){
             long: location.longitude,
             images: files
         })
+    ).then((res) => {
+        return res.data
+    }).catch((e) => {
+        console.log(e);
+        return e;
+    })
+}
+
+export async function searchPlace(search){
+    let token = await getSecureToken();
+    AxiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    return AxiosInstance.post('place/search',
+        JSON.stringify({search: search})
     ).then((res) => {
         return res.data
     }).catch((e) => {

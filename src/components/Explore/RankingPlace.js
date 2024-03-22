@@ -6,6 +6,8 @@ import {styles} from "../styles";
 const apiUrl = process.env.API_URL;
 export default function RankingPlace(props){
     const { place, index } = props;
+    const { rankings_avg_ranking } = place;
+
     const goToPlace = () => {
         console.log("GO TO PLACE");
     }
@@ -27,7 +29,7 @@ export default function RankingPlace(props){
         );
     };
     return (
-        <TouchableOpacity onPress={goToPlace}>
+        <TouchableOpacity onPress={goToPlace} ke >
             <View style={styles.content}>
                 <Image source={{ uri : `${apiUrl}/file/${place.files[0]?.file}` }} style={styles.image} />
                 <View style={styles.infoContent}>
@@ -38,7 +40,7 @@ export default function RankingPlace(props){
                     <Rating
                         imageSize={15}
                         readonly
-                        startingValue={place.average_rating}
+                        startingValue={rankings_avg_ranking}
                     />
                 </View>
                 <Text style={styles.description}>{place.description}</Text>

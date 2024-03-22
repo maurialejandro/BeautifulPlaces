@@ -14,7 +14,6 @@ export function Info(props){
             iconName: "map-marker",
         },
     ];
-
     return(
         <View style={styles.viewInfoPlace} >
             <Text style={styles.txtInfoPlace} > Información: </Text>

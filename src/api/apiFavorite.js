@@ -38,3 +38,14 @@ export async function updateFavorite(id, favorite){
         return e;
     })
 }
+
+export async function getPlaceFavorite(){
+    let token = await getSecureToken();
+    AxiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    return AxiosInstance.post('favorite/place/user').then((res) => {
+        return res.data;
+    }).catch((e) => {
+        console.log(e);
+        return e;
+    })
+}

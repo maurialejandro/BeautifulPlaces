@@ -1,10 +1,7 @@
 import React, {useState} from "react";
-import {ActivityIndicator, FlatList, Text, TouchableOpacity, View} from "react-native";
+import {FlatList} from "react-native";
 import {usePlacesContext} from "../../context/PlaceContext";
 import RenderPlacesE from "./RenderPlacesE";
-import {Card, Image} from "@rneui/themed";
-import {styles} from "../styles";
-const apiUrl = process.env.API_URL;
 function FooterList(props) {
     return null;
 }

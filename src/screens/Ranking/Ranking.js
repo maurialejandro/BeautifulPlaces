@@ -1,34 +1,50 @@
 import React, {useEffect} from "react";
 import {View, Text, ScrollView} from "react-native";
-import {useAddPlacesContext, usePlacesContext} from "../../context/PlaceContext";
+import {
+    useAddPlacesContext,
+    useAddPlacesRanking, useAddPlacesRankingContext,
+    usePlacesContext,
+    usePlacesRankingContext
+} from "../../context/PlaceContext";
 import {map} from "lodash";
-import {getAllPlaces, getPlaces} from "../../api/apiPlace";
+import {getAllPlaces, getAllPlacesRanking, getPlaces} from "../../api/apiPlace";
 import RankingPlace from "../../components/Explore/RankingPlace";
+import {myToast} from "../../components/Elements/myToast";
 
 export function Ranking(){
-    const places = usePlacesContext();
-    const addPlaces = useAddPlacesContext();
+    const places = usePlacesRankingContext();
+    const addPlaces = useAddPlacesRankingContext();
     useEffect(() => {
         (async () => {
-            // no hay lugares y si el usuario esta login entonces obtener
             if(!places[0].name){
-                await getPlacesApi();
+                await getPlacesRankingApi();
             }
         })();
     }, []);
-    const getPlacesApi = async () => {
-        const res = await getAllPlaces();
+    const getPlacesRankingApi = async () => {
+        const res = await getAllPlacesRanking();
         console.log(res, "RANKING");
-        await addPlaces(res.places);
+        if(res.status === 200){
+            await addPlaces(res.places);
+            return;
+        }
+        myToast('Algo sucedió');
     }
     return (
-        <ScrollView>
-            {map(places, (place, index) => (
-                <RankingPlace
-                    place={place}
-                    index={index}
-                />
-            ))}
+        <ScrollView key={2} >
+            {
+                places[0].name ? (
+                    map(places, (place, index) => (
+                        <RankingPlace
+                            key={index}
+                            place={place}
+                            index={index}
+                        />
+                    ))
+                ) : (
+                    <Text> No Places </Text>
+                )
+            }
         </ScrollView>
     )
 }

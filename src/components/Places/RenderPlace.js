@@ -5,7 +5,6 @@ import {styles} from "../styles";
 const apiUrl = process.env.API_URL;
 export default function RenderPlace(props){
     const { place, navigation } = props
-    console.log(place);
     const { place_id, id, files, name, description, location } = place.item;
     const goToPlace = () => {
         navigation.navigate({name: 'place', params: place.item});
