@@ -1,33 +1,38 @@
 import React from "react";
-import { View, TouchableOpacity } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { View, Text, TouchableOpacity } from "react-native";
 import {Icon, Image} from "@rneui/themed";
 import {styles} from "../styles";
+import {removeFavorite, updateFavorite} from "../../api/apiFavorite";
+import {myToast} from "../Elements/myToast";
 const apiUrl = process.env.API_URL;
 export function PlaceFavorite(props) {
-    const { place } = props;
-    const navigation = useNavigation();
-
+    const { place, index } = props;
+    const { files } = place;
     const goToRestaurant = () => {
         console.log("GO TO PLACE")
     };
 
     const onRemoveFavorite = async () => {
-        console.log("REMOVE")
+        const res = removeFavorite(place.favorite.id);
+        if(res.status === 200){
+            myToast("Eliminado de tus favoritos");
+            return;
+        }
+        myToast("Algo paso");
     };
 
     return (
-        <TouchableOpacity onPress={goToRestaurant}>
-            <View style={styles.content}>
+        <TouchableOpacity  key={index} onPress={goToRestaurant}>
+            <View key={index}r style={styles.contentPlaceFavorite}>
                 <Image source={{ uri : `${apiUrl}/file/${files[0]?.file}` }} style={styles.image} />
-                <View style={styles.infoContent}>
-                    <Text style={styles.name}>{place.name}</Text>
+                <View style={styles.infoContentPlaceFavorite}>
+                    <Text style={styles.namePlaceFavorite}>{place.name}</Text>
                     <Icon
                         type="material-community"
                         name="heart"
                         color="#f00"
                         size={35}
-                        containerStyle={styles.iconPlaces}
+                        containerStyle={styles.iconContainerPlaceFavorite}
                         onPress={onRemoveFavorite}
                     />
                 </View>

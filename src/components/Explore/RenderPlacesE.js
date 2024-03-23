@@ -11,6 +11,7 @@ export default function RenderPlacesE(props){
         description, location, rankings_avg_ranking,
         countFavorites
     } = place.item;
+    console.log(user);
     const goToPlace = () => {
         navigation.navigate({name: "place-e", params: place.item});
     }

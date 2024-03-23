@@ -1,11 +1,8 @@
 import React, {useState} from "react";
-import {ScrollView, View} from "react-native";
-import {Button} from '@rneui/themed';
+import {ScrollView} from "react-native";
 import {CarouselSnap} from "../../components/Elements/CarouselSnap";
 import Header from "../../components/Places/Header";
-import {styles} from "../../components/styles";
 import {Info} from "../../components/Places/Info";
-import {Icon} from "@rneui/themed";
 import ModalToDelete from "../../components/Places/ModalToDelete";
 import {useNavigation} from "@react-navigation/native";
 import ButtonsPlace from "../../components/Places/ButtonsPlace";

@@ -79,7 +79,7 @@ export function LoginForm(props){
                             name="password"
                         />
                         <CustomButton
-                            title="Login"
+                            title="Iniciar sesión"
                             onPress={handleSubmit(onSubmit)}
                         />
                     </>

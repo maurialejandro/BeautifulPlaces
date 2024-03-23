@@ -13,12 +13,14 @@ import {
     useRemovePlacesRankingContext
 } from "../../../context/PlaceContext";
 import {removeSecureToken} from "../../../api/token/handleToken";
+import {useRemovePlacesFavoriteContext} from "../../../context/FavoritesPlaceContext";
 
 export function UserLogged(){
 
     const logout = useUserLogout();
     const removePlace = useRemovePlaceContext();
     const removePlaces = useRemovePlacesContext();
+    const removePlacesFavorites = useRemovePlacesFavoriteContext();
     const removePlacesRanking = useRemovePlacesRankingContext();
     const [_, setReload] = useState(false);
     const navigation = useNavigation();
@@ -33,6 +35,7 @@ export function UserLogged(){
             await removeSecureToken();
             await removePlaces();
             await removePlacesRanking();
+            await removePlacesFavorites();
             navigation.reset({
                 index: 0,
                 routes: [{ name: 'Mis Lugares' }]
@@ -47,7 +50,7 @@ export function UserLogged(){
             <AccountOptions onReload={onReload} nav={navigation} />
             <CustomButton
                 onPress={toLogout}
-                title="SingOut"
+                title="Cerrar sesión"
             />
 
         </View>

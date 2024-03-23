@@ -10,6 +10,12 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         paddingHorizontal: 5,
+    },
+    containerIconPlaceE: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingHorizontal: 10,
 
     },
     containerCard: {
@@ -27,6 +33,27 @@ export const styles = StyleSheet.create({
     image: {
         width: "100%",
         height: 150,
+    },
+    namePlaceFavorite: {
+        fontSize: 18,
+        fontWeight: "bold",
+    },
+    iconContainerPlaceFavorite: {
+        position: "absolute",
+        backgroundColor: "#fff",
+        borderRadius: 50,
+        padding: 15,
+        top: -30,
+        right: 20,
+    },
+    contentPlaceFavorite: {
+        backgroundColor: "#fff",
+        marginVertical: 10,
+        marginHorizontal: 15,
+    },
+    infoContentPlaceFavorite: {
+        paddingHorizontal: 20,
+        paddingVertical: 15,
     },
     infoContent: {
         paddingHorizontal: 20,
@@ -53,6 +80,25 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 20,
         paddingBottom: 15,
         paddingTop: 5,
+    },
+    txtFavorite: {
+        color: "#828282",
+        fontSize: 12,
+    },
+    txtUserE: {
+
+        fontWeight: "bold",
+        color: "#828282",
+        fontSize: 15,
+    },
+    viewDate: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+    },
+    txtDateE: {
+        color: "#828282",
+        fontSize: 12,
     },
     location: {
         color: "#828282",
@@ -284,8 +330,17 @@ export const styles = StyleSheet.create({
         justifyContent: "space-between",
         alignItems: "center",
     },
+    txtUserDescription: {
+        flexDirection: "row",
+        alignItems: "center",
+    },
     contentViewHeader: {
         margin: 15,
+    },
+    viewPlaceE: {
+        backgroundColor: "#fff",
+        margin: 10,
+        borderRadius: 20
     },
     contentBtnFavorite: {
         position: "absolute",
@@ -301,12 +356,19 @@ export const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: "bold",
     },
+    txtCustomButton: {
+        fontSize: 15,
+        fontWeight: "bold",
+    },
     txtTitleLoading: {
         fontSize: 20,
         fontWeight: "bold",
     },
     txtDescription: {
         marginTop: 5,
+        color: "#828282",
+    },
+    txtDescriptionE:{
         color: "#828282",
     },
     contentViewMap: {

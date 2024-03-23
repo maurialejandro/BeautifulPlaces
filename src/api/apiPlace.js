@@ -68,8 +68,6 @@ export async function getPlace(data) {
 }
 
 export async function getAllPlaces(){
-    let token = await getSecureToken();
-    AxiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     return AxiosInstance.post('place/get-all-places').then((res) => {
         return res.data;
     }).catch((e) => {

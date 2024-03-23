@@ -26,16 +26,17 @@ export default function Header(props){
         <View style={styles.contentViewHeader}>
             <View style={styles.titleViewHeader} >
                 <Text style={styles.txtName} >{place.name}</Text>
-                <Rating
-                    ratingCount={5}
-                    imageSize={25}
-                    startingValue={
-                        place.rankings[0]?.ranking ?
-                            place.rankings[0]?.ranking :
-                            0
-                    }
-                    onFinishRating={(r) => storeRanking(r)}
-                />
+                    <Rating
+                        ratingCount={5}
+                        imageSize={25}
+                        tintColor={"#EEEDED"}
+                        startingValue={
+                            place.rankings[0]?.ranking ?
+                                place.rankings[0]?.ranking :
+                                0
+                        }
+                        onFinishRating={(r) => storeRanking(r)}
+                    />
             </View>
             <Text style={styles.txtDescription} >{place.description}</Text>
         </View>
