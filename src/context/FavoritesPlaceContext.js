@@ -3,6 +3,7 @@ import React, {useContext, useState} from "react";
 const placesFavoriteContext = React.createContext();
 const addPlacesFavoriteContext = React.createContext();
 const removePlacesFavoriteContext = React.createContext();
+const removePlaceFavoriteContext = React.createContext();
 
 const placeData = [
     {
@@ -24,6 +25,9 @@ export function useAddPlacesFavoriteContext(){
 export function useRemovePlacesFavoriteContext(){
     return useContext(removePlacesFavoriteContext);
 }
+export function useRemovePlaceFavoriteContext(){
+    return useContext(removePlaceFavoriteContext);
+}
 
 export const FavoritePlaceProvider = (props) => {
     const [placesFavorite, setPlacesFavorite] = useState(placeData);
@@ -33,11 +37,18 @@ export const FavoritePlaceProvider = (props) => {
     const removePlacesFavorite = () => {
         setPlacesFavorite(placeData)
     }
+    const removePlaceFavorite = (placeId) => {
+        console.log('FAVORITES PLACE')
+        const newPlacesFavorites = placesFavorite.filter(place => place.id !== placeId);
+        setPlacesFavorite(newPlacesFavorites);
+    }
     return(
         <placesFavoriteContext.Provider value={placesFavorite} >
             <addPlacesFavoriteContext.Provider value={addPlacesFavorite}>
                 <removePlacesFavoriteContext.Provider value={removePlacesFavorite}>
-                    {props.children}
+                    <removePlaceFavoriteContext.Provider value={removePlaceFavorite} >
+                        {props.children}
+                    </removePlaceFavoriteContext.Provider>
                 </removePlacesFavoriteContext.Provider>
             </addPlacesFavoriteContext.Provider>
         </placesFavoriteContext.Provider>

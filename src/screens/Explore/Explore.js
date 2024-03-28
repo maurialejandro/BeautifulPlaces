@@ -4,7 +4,7 @@ import {getAllPlaces} from "../../api/apiPlace";
 import {useAddPlacesContext, usePlacesContext} from "../../context/PlaceContext";
 import {Loading} from "../../components/Elements/Loading";
 import {styles} from "../../components/styles";
-import {useNavigation} from "@react-navigation/native";
+import {useIsFocused, useNavigation} from "@react-navigation/native";
 import {ListAllPlaces} from "../../components/Explore/ListAllPlaces";
 import CustomSearchBar from "../../components/Explore/CustomSearchBar";
 
@@ -13,11 +13,12 @@ export default function Explore(){
     const places = usePlacesContext();
     const navigation = useNavigation();
     const [ isVisibleLoading, setIsVisibleLoading ] = useState(true);
+    const isFocused = useIsFocused();
     useEffect(() => {
         (async () => {
             await getAllPlacesApi();
         })()
-    }, []);
+    }, [isFocused]);
     const getAllPlacesApi = async () => {
         const res = await getAllPlaces();
         setIsVisibleLoading(false);

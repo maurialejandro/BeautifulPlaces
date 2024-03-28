@@ -40,7 +40,7 @@ export async function updateNameUser(data){
     ).then((res) => {
         return res.data;
     }).catch((e) => {
-        // handle unautorized response with context
+        // handle unauthorized response with context
         console.log(e.response.data)
         return e.response.data
     })

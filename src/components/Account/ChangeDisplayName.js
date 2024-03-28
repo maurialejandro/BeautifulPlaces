@@ -40,11 +40,11 @@ export function ChangeDisplayName(props){
                         onBlur={onBlur}
                         onChangeText={onChange}
                         value={value}
+                        errorMessage={errors.name && "Nombre es requerido"}
                     />
                 )}
                 name="name"
             />
-            { errors.name && <Text style={styles.txtModal} > Nombre es requerido </Text> }
             <CustomButton title = "Guardar" onPress={handleSubmit(onSubmit)} />
         </View>
     )

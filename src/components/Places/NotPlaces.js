@@ -4,7 +4,9 @@ import {Icon} from "@rneui/themed";
 import {useNavigation} from "@react-navigation/native";
 import {styles} from "../styles";
 
-export default function NotPlaces(){
+export default function NotPlaces(props){
+    const { message } = props;
+
     const navigation = useNavigation();
     return(
         <View style={styles.viewNotLogged}>
@@ -15,7 +17,7 @@ export default function NotPlaces(){
                 size={150}
                 onPress={() => navigation.navigate('add-place')}
             />
-            <Text style={styles.txtName} > Sin lugares para mostrar </Text>
+            <Text style={styles.txtName} >{message}</Text>
         </View>
     )
 }

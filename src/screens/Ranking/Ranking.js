@@ -30,7 +30,6 @@ export function Ranking(){
     }, []);
     const getPlacesRankingApi = async () => {
         const res = await getAllPlacesRanking();
-        console.log(res, "RANKING");
         if(res.status === 200){
             await addPlaces(res.places);
             setIsLoading(false);

@@ -24,7 +24,6 @@ const onCloseOpenModal = () => setShowModal(prevState => !prevState);
                 <ChangeEmailForm onClose={onCloseOpenModal} onReload={onReload} />
             );
         }
-
         if (key === "password") {
             setRenderComponent(<ChangePasswordForm onClose={onCloseOpenModal} onReload={onReload} />);
         }

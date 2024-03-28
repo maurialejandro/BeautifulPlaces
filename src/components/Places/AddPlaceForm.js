@@ -1,24 +1,21 @@
-import React, {useState} from "react";
-import {Platform, Text, TextInput, View} from "react-native";
+import React from "react";
+import {Text, View} from "react-native";
 import {styles} from "../styles";
 import {Icon, Input} from "@rneui/themed";
 import {useForm, Controller} from "react-hook-form";
 import {CustomButton} from "../Elements/CustomButton";
 import UploadedImages from "./UploadedImages";
-import {storeImagesPlace, storePlace} from "../../api/apiPlace";
+import {storePlace} from "../../api/apiPlace";
 import {myToast} from "../Elements/myToast";
 import {useNavigation} from "@react-navigation/native";
-import {useRemovePlaceContext} from "../../context/PlaceContext";
 
 export default function AddPlaceForm(props) {
-
     const navigation = useNavigation();
     const { setIsVisibleMap,
         location,
         images,
         setImages
     } = props;
-
     const { handleSubmit, control,
         formState: { errors }, getValues
     } = useForm({
@@ -28,7 +25,6 @@ export default function AddPlaceForm(props) {
             location: ''
         }
     });
-
     const onSubmit = async (data) => {
         if(!images.length || !images ){
             myToast("Debe subir una imagen del lugar por lo menos");
@@ -38,7 +34,6 @@ export default function AddPlaceForm(props) {
             myToast("Debe agregar ubicación geografica");
         }
         const res = await storePlace(data, location, images);
-
         if(res.status !== 200) {
             myToast('Error al guardar lugar');
             return;
@@ -48,7 +43,6 @@ export default function AddPlaceForm(props) {
             index: 0,
             routes: [{ name: "places" }]
         });
-
     }
 
 
@@ -67,6 +61,7 @@ export default function AddPlaceForm(props) {
                             style={styles.inputForm}
                             onChangeText={onChange}
                             value={value}
+                            errorMessage={errors.name && "Nombre es requerido"}
                         />
                     )}
                     name="name"
@@ -86,11 +81,11 @@ export default function AddPlaceForm(props) {
                             style={styles.inputForm}
                             onChangeText={onChange}
                             value={value}
+                            errorMessage={errors.description && "Descripción es requerido"}
                         />
                     )}
                     name="description"
                 />
-                {errors.description && <Text style={styles.txt} > Descripción es requerida </Text>}
 
                 <Controller
                     control={control}
@@ -111,13 +106,12 @@ export default function AddPlaceForm(props) {
                                     onPress={() => setIsVisibleMap(true)}
                                 />
                             }
+                            errorMessage={errors.location && "Ubicación es requerido"}
                         />
                     )}
                     name="location"
                 />
-                {errors.location && <Text style={styles.txt} > Ubicación es requerida </Text>}
             </>
-
             <UploadedImages images={images} setImages={setImages} />
             <CustomButton
                 title="Guardar"

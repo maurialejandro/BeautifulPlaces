@@ -29,13 +29,13 @@ export function UserLogged(){
     const toLogout = async () => {
         const res = await apiLogout();
         if(res.data.status === 200){
-            myToast('Logged out');
             await removePlace();
-            await logout();
-            await removeSecureToken();
             await removePlaces();
             await removePlacesRanking();
             await removePlacesFavorites();
+            await logout();
+            await removeSecureToken();
+            myToast('Logged out');
             navigation.reset({
                 index: 0,
                 routes: [{ name: 'Mis Lugares' }]

@@ -10,5 +10,5 @@ export async function getSecureToken(){
 }
 
 export async function removeSecureToken(){
-    return await SecureStore.setItemAsync(keyToken, null);
+    await SecureStore.deleteItemAsync(keyToken);
 }

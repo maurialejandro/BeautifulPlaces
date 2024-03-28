@@ -49,11 +49,11 @@ export function ChangePasswordForm(props){
                         onBlur={onBlur}
                         onChangeText={onChange}
                         value={value}
+                        errorMessage={errors.password && "Contraseña es requerido"}
                     />
                 )}
                 name="password"
             />
-            {errors.password && <Text style={styles.txtModal} > Actual contraseña es requerida </Text> }
             <Controller
                 control={control}
                 rules={{
@@ -65,11 +65,11 @@ export function ChangePasswordForm(props){
                         onBlur={onBlur}
                         onChangeText={onChange}
                         value={value}
+                        errorMessage={errors.newPassword && "Nueva contraseña es requerido"}
                     />
                 )}
                 name="newPassword"
             />
-            {errors.newPassword && <Text style={styles.txtModal} > Nueva contraseña es requerida </Text> }
             <Controller
                 control={control}
                 rules={{
@@ -81,11 +81,11 @@ export function ChangePasswordForm(props){
                         onBlur={onBlur}
                         onChangeText={onChange}
                         value={value}
+                        errorMessage={errors.repeatNewPassword && "Repetir nueva contraseña es requerido"}
                     />
                 )}
                 name="repeatNewPassword"
             />
-            {errors.repeatNewPassword && <Text style={styles.txtModal} > Repetir nueva contraseña es requerido </Text> }
             <CustomButton title="Guardar" onPress={handleSubmit(onSubmit)} />
         </View>
     )

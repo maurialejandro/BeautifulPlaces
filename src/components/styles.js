@@ -16,7 +16,11 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         paddingHorizontal: 10,
-
+    },
+    contentHeaderExplore: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
     },
     containerCard: {
         alignItems: 'center',
@@ -29,6 +33,9 @@ export const styles = StyleSheet.create({
         marginVertical: 10,
         marginHorizontal: 15,
         borderRadius: 20,
+    },
+    contentRating: {
+        margin: 10,
     },
     image: {
         width: "100%",
@@ -55,12 +62,32 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 20,
         paddingVertical: 15,
     },
+    contentLocation: {
+        flexDirection: "row",
+        alignItems: "center",
+        marginLeft: 15,
+    },
     infoContent: {
         paddingHorizontal: 20,
         paddingTop: 15,
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-between",
+    },
+    rankingHeader: {
+        paddingHorizontal: 20,
+        paddingTop: 15,
+        flexDirection: "row",
+        justifyContent: 'space-between',
+        alignItems: "center",
+    },
+    infoContentUser: {
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        paddingHorizontal: 10,
+        paddingTop: 5,
+        flexDirection: 'row',
+        alignItems: 'center',
     },
     nameContent: {
         flexDirection: "row",
@@ -86,14 +113,15 @@ export const styles = StyleSheet.create({
         fontSize: 12,
     },
     txtUserE: {
-
         fontWeight: "bold",
         color: "#828282",
         fontSize: 15,
     },
     viewDate: {
-        flexDirection: "row",
-        justifyContent: "space-between",
+        position: "absolute",
+        top: 0,
+        right: 0,
+        margin: 10,
         alignItems: "center",
     },
     txtDateE: {
@@ -103,9 +131,6 @@ export const styles = StyleSheet.create({
     location: {
         color: "#828282",
         fontSize: 12,
-        paddingHorizontal: 20,
-        paddingBottom: 15,
-        paddingTop: 5,
     },
     favorites: {
         color: "#828282",
@@ -113,8 +138,8 @@ export const styles = StyleSheet.create({
         marginLeft: 3,
     },
     contentPlaceAll: {
-        flexDirection: 'row', // Alinea los elementos horizontalmente
-        alignItems: 'center', // Alinea los elementos verticalmente
+        flexDirection: 'row',
+        alignItems: 'center',
         marginLeft: 15,
         marginBottom: 15
     },
@@ -127,6 +152,12 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         paddingHorizontal: 1,
+    },
+    containerFavoritesCardPlace: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingHorizontal: 15
     },
     containerIconEartPlace:{
         flexDirection: 'row',
@@ -336,6 +367,16 @@ export const styles = StyleSheet.create({
     },
     contentViewHeader: {
         margin: 15,
+    },
+    contentViewHeaderOpinion: {
+        margin: 15,
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+    },
+    contentViewHeaderOpinionView: {
+        flexDirection: "row",
+        alignItems: "center",
     },
     viewPlaceE: {
         backgroundColor: "#fff",

@@ -13,7 +13,6 @@ export const CustomButton = ({ onPress, title }) => (
             }}
             buttonStyle={{
                 backgroundColor: "#ACF6C8",
-
             }}
             onPress={onPress}
         >

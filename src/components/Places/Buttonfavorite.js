@@ -10,7 +10,6 @@ export default function ButtonFavorite(props){
     const { place } = props;
     const [ favorite, setFavorite ] = useState(place.favorite);
     const removeFavorites = useRemovePlacesFavoriteContext();
-
     const setFavorites =  async () => {
 
         if(favorite){

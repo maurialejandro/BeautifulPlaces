@@ -2,7 +2,10 @@ import React, {useEffect, useState} from "react";
 import {ScrollView, Text} from "react-native";
 import {getPlaceFavorite} from "../../api/apiFavorite";
 import {PlaceFavorite} from "../../components/Favorites/PlaceFavorite";
-import {useAddPlacesFavoriteContext, usePlacesFavoriteContext} from "../../context/FavoritesPlaceContext";
+import {
+    useAddPlacesFavoriteContext,
+    usePlacesFavoriteContext,
+} from "../../context/FavoritesPlaceContext";
 import {myToast} from "../../components/Elements/myToast";
 import {map} from "lodash";
 import {Loading} from "../../components/Elements/Loading";
@@ -31,21 +34,21 @@ export function Favorites(){
         setIsLoading(false);
         if(res.status === 200){
             await addPlacesFavorite(res.placesFavorites);
-            return
+            return;
         }
         myToast('Algo Paso');
     }
     return (
-        <ScrollView key={1}>
+        <ScrollView>
             {
                 (isLoading === true ) ? (
                     <Loading text={"Cargando lugares"} />
-                ) : placesFavorites[0].name ? (
+                ) : placesFavorites[0]?.name ? (
                     map(placesFavorites, (place, index) => (
-                        <PlaceFavorite index={index} place={place} />
+                        <PlaceFavorite key={`${Math.random()}`} index={index} place={place} />
                     ))
                 ) : (user.isLogged === true) ? (
-                    <NotPlaces />
+                    <NotPlaces message={"No tienes Favoritos"} />
                 ) : (
                     <NotLogged />
                 )

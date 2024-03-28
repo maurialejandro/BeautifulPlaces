@@ -57,11 +57,11 @@ export function ChangeEmailForm(props){
                         onBlur={onBlur}
                         onChangeText={onChange}
                         value={value}
+                        errorMessage={errors.email && "Correo es requerido"}
                     />
                 )}
                 name="email"
             />
-            { errors.email && <Text style={styles.txtModal} > Email es requerido </Text> }
             <Controller
                 control={control}
                 rules={{
@@ -73,11 +73,11 @@ export function ChangeEmailForm(props){
                         onBlur={onBlur}
                         onChangeText={onChange}
                         value={value}
+                        errorMessage={errors.password && "Contraseña es requerido"}
                     />
                 )}
                 name="password"
             />
-            {errors.password && <Text style={styles.txtModal} > Password es requerido </Text> }
             <CustomButton title="Guardar" onPress={handleSubmit(onSubmit)} />
         </View>
     )

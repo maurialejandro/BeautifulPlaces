@@ -77,7 +77,7 @@ export const PlaceProvider = (props) => {
                             <removePlacesContext.Provider value={removePlaces}>
                                 <placesRankingContext.Provider value={placesRanking}>
                                     <addPlacesRankingContext.Provider value={addPlacesRanking}>
-                                        <removePlacesRankingContext.Provider value={removePlaces}>
+                                        <removePlacesRankingContext.Provider value={removePlacesRanking}>
                                             {props.children}
                                         </removePlacesRankingContext.Provider>
                                     </addPlacesRankingContext.Provider>
