@@ -29,7 +29,7 @@ export default function AddPlaceForm(props) {
         if(!images.length || !images ){
             myToast("Debe subir una imagen del lugar por lo menos");
             return;
-        };
+        }
         if(!location){
             myToast("Debe agregar ubicación geografica");
         }

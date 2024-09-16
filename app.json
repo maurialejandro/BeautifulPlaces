@@ -26,12 +26,25 @@
         "googleMaps": {
           "apiKey": "AIzaSyAM35W0NxgnRz1vOINJ_mSPHkc6l2MJ3uM"
         }
-      }
+      },
+      "permissions": [
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.CAMERA"
+      ],
+      "package": "com.mauri2165.BeautifulPlaces"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
+        }
+      ],
       [
         "expo-image-picker",
         {
@@ -43,7 +56,13 @@
         {
           "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
         }
-      ]
-    ]
+      ],
+      "expo-secure-store"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "e092a0d1-c521-4058-aac8-cab4378bc3d6"
+      }
+    }
   }
 }

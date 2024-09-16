@@ -22,6 +22,11 @@ export function LoginForm(props){
     const onSubmit = async (data) => {
         setIsLoading(true);
         const res = await userLogin(data);
+        // ToDo
+        // Generar arquitectura de software para el manejo de distintos errores
+        if(res.error === 'Network Error'){
+            myToast('Error de conexion con el servidor');
+        }
         if(res.error === 'bad credenctials'){
             myToast('Email o contraseña incorrecto');
         }

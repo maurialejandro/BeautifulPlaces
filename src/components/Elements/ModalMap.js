@@ -24,7 +24,11 @@ export default function ModalMap (props){
                 return;
             }
             if(!location){
-                let location = await Location.getCurrentPositionAsync({});
+                let location = await Location.getCurrentPositionAsync({
+                    accuracy: Location.Accuracy.High,
+                    timeout: 5000,
+                    mocked: true
+                });
                 await setLocation({
                     latitude: location.coords.latitude,
                     longitude: location.coords.longitude,
@@ -46,6 +50,7 @@ export default function ModalMap (props){
             { location && (
                 <View style={styles.containerMap} >
                     <MapView
+                        provider={PROVIDER_GOOGLE}
                         style={styles.mapStyle}
                         showsUserLocation={true}
                         initialRegion={location}

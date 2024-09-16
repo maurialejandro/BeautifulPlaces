@@ -25,6 +25,11 @@ export async function userLogin(data){
         }
         return res.data;
     }).catch((e) => {
+        // ToDo
+        // Generar arquitectura de software para manejar distintos errores
+        if(e.message){
+           return { 'error': e.message }
+        }
         if(e.response.data.errors){
             return { 'error': e.response.data.errors }
         }
