@@ -33,6 +33,7 @@ export function Places(){
 
     const getPlacesBack = async () => {
         const res = await getPlaces();
+
         setIsVisibleLoading(false);
         if(res.places?.length === 0){
             return;
@@ -46,7 +47,7 @@ export function Places(){
             style={styles.viewPlacesBody}
         >
             {
-                (places[0].name && user.isLogged) ? (
+                (places[0].name !== null && user.isLogged) ? (
                     <ListPlaces
                         nav={navigation}
                     />

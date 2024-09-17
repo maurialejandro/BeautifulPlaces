@@ -13,14 +13,12 @@ import {
     useRemovePlacesRankingContext
 } from "../../../context/PlaceContext";
 import {removeSecureToken} from "../../../api/token/handleToken";
-import {useRemovePlacesFavoriteContext} from "../../../context/FavoritesPlaceContext";
 
 export function UserLogged(){
 
     const logout = useUserLogout();
     const removePlace = useRemovePlaceContext();
     const removePlaces = useRemovePlacesContext();
-    const removePlacesFavorites = useRemovePlacesFavoriteContext();
     const removePlacesRanking = useRemovePlacesRankingContext();
     const [_, setReload] = useState(false);
     const navigation = useNavigation();

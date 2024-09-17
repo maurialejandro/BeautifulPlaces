@@ -6,7 +6,6 @@ import {Info} from "../../components/Places/Info";
 import ModalToDelete from "../../components/Places/ModalToDelete";
 import {useNavigation} from "@react-navigation/native";
 import ButtonsPlace from "../../components/Places/ButtonsPlace";
-import ButtonFavorite from "../../components/Places/Buttonfavorite";
 export default function Place({route}){
     const place = route.params;
     const navigation = useNavigation();
@@ -34,7 +33,6 @@ export default function Place({route}){
                 setModalIsVisible={setModalIsVisible}
                 place={place}
             />
-            <ButtonFavorite place={place} />
         </ScrollView>
     );
 }

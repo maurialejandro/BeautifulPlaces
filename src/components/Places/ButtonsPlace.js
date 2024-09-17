@@ -12,7 +12,12 @@ export default function ButtonsPlace(props) {
     const deletePlaceApi = async () => {
         setModalIsVisible(true);
     }
-    return(
+
+    const commentPlace = async () => {
+        //Add moidal comment
+        console.log('add modal comment');
+    }
+     return(
         <View style={styles.containerIconPlace} >
             <Button
                 onPress={() => goToEditPlace()}
@@ -29,6 +34,23 @@ export default function ButtonsPlace(props) {
                 <Icon
                     type="material-community"
                     name="pencil"
+                    style={{
+                        marginLeft: 5
+                    }}
+                />
+            </Button>
+            <Button
+                onPress={() => commentPlace()}
+                title="Dark"
+                buttonStyle={{ backgroundColor: 'rgba(39, 39, 39, 1)' }}
+
+                titleStyle={{ color: 'white', marginHorizontal: 20 }}
+            >
+                Comentar
+                <Icon
+                    type="material-community"
+                    name="comment"
+                    color='#FFF'
                     style={{
                         marginLeft: 5
                     }}
