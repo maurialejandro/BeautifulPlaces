@@ -4,8 +4,6 @@ import {styles} from "../styles";
 import { Rating } from 'react-native-ratings';
 import {storeRankingPlace, updateRankingPlace} from "../../api/apiRanking";
 import {myToast} from "../Elements/myToast";
-import {Icon} from "@rneui/themed";
-import {storeFavorite, updateFavorite} from "../../api/apiFavorite";
 export default function Header(props){
     const { place } = props;
     const storeRanking = async (raiting) => {

@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import {Text, View} from "react-native";
 import {styles} from "../styles";
 import {calculateUploadedTime} from "../Shared/calculateUploadedTime";
-import RaitingFavorite from "./RaitingFavorite";
 
 export default function Header(props){
     const { place } = props;
@@ -17,8 +16,6 @@ export default function Header(props){
                     <Text style={styles.txtUserE}>{user.name}</Text>
                     <Text style={styles.txtDescriptionE}> {place.description}</Text>
                 </View>
-                <Text>{'\n'}</Text>
-                <RaitingFavorite place={place} />
             </View>
             <View style={styles.viewDate} >
                 <Text style={styles.txtDateE} > {calculateUploadedTime(user.created_at)} </Text>

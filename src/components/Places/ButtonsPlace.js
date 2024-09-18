@@ -4,7 +4,7 @@ import {Button, Icon} from "@rneui/themed";
 import {View} from "react-native";
 
 export default function ButtonsPlace(props) {
-    const { setModalIsVisible, navigation, place } = props;
+    const { setModalIsVisible, setModalCommentIsVisible, navigation, place } = props;
     const goToEditPlace = () => {
         navigation.navigate({ name: 'edit-place', params: place });
     }
@@ -14,8 +14,7 @@ export default function ButtonsPlace(props) {
     }
 
     const commentPlace = async () => {
-        //Add moidal comment
-        console.log('add modal comment');
+        setModalCommentIsVisible(true);
     }
      return(
         <View style={styles.containerIconPlace} >

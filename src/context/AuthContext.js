@@ -52,9 +52,9 @@ export const AuthProvider = (props) => {
     }
     return (
         <authContext.Provider value={user}>
-            <userLoginContext.Provider value={login} >
-                <userLogoutContext.Provider value={logout} >
-                    <userUpdateData.Provider value={updateData} >
+            <userLoginContext.Provider value={login}>
+                <userLogoutContext.Provider value={logout}>
+                    <userUpdateData.Provider value={updateData}>
                         {props.children}
                     </userUpdateData.Provider>
                 </userLogoutContext.Provider>

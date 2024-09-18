@@ -14,7 +14,7 @@ export default function YourOpinion(props){
         <View style={styles.content} >
             <View style={styles.contentViewHeaderOpinion} >
                 <View style={styles.contentViewHeaderOpinionView}>
-                    <Text>Tu opinion </Text>
+                    <Text>Tu puntiación </Text>
                     <Rating
                         readonly={true}
                         showReadOnlyText={false}

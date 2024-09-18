@@ -1,9 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {View, Text, ScrollView} from "react-native";
 import {
-    useAddPlacesContext,
-    useAddPlacesRanking, useAddPlacesRankingContext,
-    usePlacesContext,
+    useAddPlacesRankingContext,
     usePlacesRankingContext
 } from "../../context/PlaceContext";
 import {map} from "lodash";
@@ -39,6 +37,10 @@ export function Ranking(){
     }
     return (
         <ScrollView key={2} >
+            <Text>
+                Ganadores del premio semanal
+                Beautiful Places
+            </Text>
             {
                 (isLoading === true) ? (
                     <Loading text={"Cargando lugares"} />

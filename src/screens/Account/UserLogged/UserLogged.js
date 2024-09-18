@@ -30,7 +30,6 @@ export function UserLogged(){
             await removePlace();
             await removePlaces();
             await removePlacesRanking();
-            await removePlacesFavorites();
             await logout();
             await removeSecureToken();
             myToast('Logged out');

@@ -21,6 +21,7 @@ export default function Explore(){
     }, [isFocused]);
     const getAllPlacesApi = async () => {
         const res = await getAllPlaces();
+
         setIsVisibleLoading(false);
         if(res.status === 200){
             await addPlaces(res.places);

@@ -9,7 +9,6 @@ export default function RenderPlacesE(props){
     const { place, navigation } = props;
     const { user, files, name,
         description, location, rankings_avg_ranking,
-        countFavorites
     } = place.item;
     const goToPlace = () => {
         navigation.navigate({name: "place-e", params: place.item});
@@ -41,12 +40,6 @@ export default function RenderPlacesE(props){
                     </View>
                     <View style={styles.containerTitleCardPlace} >
                         <View style={styles.containerFavoritesCardPlace} >
-                            <Icon
-                                type="material-community"
-                                name={countFavorites >= 1 ? "heart": "heart-outline"}
-                                color="#dc3a3a"
-                            />
-                            <Text style={styles.favorites} >{countFavorites} favoritos</Text>
                         </View>
                         <View style={styles.content}>
                             <Rating

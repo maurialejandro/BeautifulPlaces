@@ -43,7 +43,6 @@ export default function ModalToDelete(props){
                     <Button title="Cancelar" onPress={closeModal} type="Outline" />
                 </View>
             </Modal>
-
         </View>
     );
 }

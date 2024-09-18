@@ -33,7 +33,7 @@ export function Places(){
 
     const getPlacesBack = async () => {
         const res = await getPlaces();
-
+        console.log(res);
         setIsVisibleLoading(false);
         if(res.places?.length === 0){
             return;
