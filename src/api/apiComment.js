@@ -17,3 +17,17 @@ export async function comment(data, idPlace){
             return error;
         })
 }
+
+export async function getUserComment(idPlace){
+    let token = await getSecureToken();
+    AxiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    return await AxiosInstance.post('place/get-user-comments',
+            JSON.stringify({
+                place_id: idPlace
+            })
+        ).then((res) => {
+            return res.data;
+        }).catch((error) => {
+            return error;
+        });
+}
