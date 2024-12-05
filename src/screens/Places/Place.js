@@ -18,17 +18,15 @@ export default function Place({route}){
     const [ listUserCommentIsVisible, setListUserCommentIsVisible ] = useState(false);
     const [ isLoading, setIsLoading ] = useState(true);
     const [ usersComments, setUsersComments ] = useState(null);
-
-    // hacer la funcion de la forma mas correcta posible para obtener
-    // la informacion de la forma mas eficiente
+    // ToDo
+    // Obtener comentarios con el usuario que comento
     const callUserComments = async () => {
         await setIsLoading(true);
         await setListUserCommentIsVisible(true);
         const res = await getUserComment(place.id);
-        await setUsersComments(res.placeUsersComments[0].user);
+        console.log("comments", res.comments);
+        await setUsersComments(res.comments);
         await setIsLoading(false);
-        await console.log("CALL_USER_COMMENTS", res.placeUsersComments[0].user.comments);
-
     }
 
     return (

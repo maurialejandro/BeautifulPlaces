@@ -16,7 +16,6 @@ export async function userRegister (data){
 }
 
 export async function userLogin(data){
-
     return await AxiosInstance.post('/login',
          JSON.stringify({email: data.email, password: data.password})
     ).then((res) => {

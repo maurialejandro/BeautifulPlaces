@@ -5,6 +5,7 @@ import {getUserComment} from "../../api/apiComment";
 import {Avatar} from "@rneui/base";
 import {Loading} from "./Loading";
 import {map} from "lodash";
+import {ListItemTitle} from "@rneui/base/dist/ListItem/ListItem.Title";
 const apiUrl = process.env.API_URL;
 
 export function ListUserComments(props){
@@ -23,26 +24,26 @@ export function ListUserComments(props){
                 ) : (
                     usersComments !== null && (
                         <View>
-                            <ListItem
-                                bottomDivider
-                            >
-                                <Avatar
-                                        rounded
-                                        source={ usersComments.avatar ?
-                                            { uri: `${apiUrl}/user/${usersComments.avatar}` } :
-                                            require('../../../assets/avatar.png')}
-                                />
-                                <ListItem.Content>
-                                    <ListItem.Title><Text style={styles.titleText} >{usersComments.name}</Text></ListItem.Title>
                                 {
-                                    map(usersComments.comments, (userComment, index) => (
-                                        <ListItem.Subtitle key={index} >
-                                            <Text key={index}> { userComment.comment } </Text>
-                                        </ListItem.Subtitle>
+                                    map(usersComments, (userComment, index) => (
+                                        <>
+                                            <ListItem
+                                                bottomDivider
+                                            >
+                                                    <Avatar
+                                                        rounded
+                                                        source={ userComment.user.avatar ?
+                                                            { uri: `${apiUrl}/user/${userComment.user.avatar}` } :
+                                                            require('../../../assets/avatar.png')}
+                                                    />
+                                                    <ListItem.Content>
+                                                        <ListItem.Title>{ userComment.user.name }</ListItem.Title>
+                                                        <ListItem.Subtitle key={index+2} > { userComment.comment }</ListItem.Subtitle>
+                                                    </ListItem.Content>
+                                            </ListItem>
+                                        </>
                                     ))
                                 }
-                                </ListItem.Content>
-                            </ListItem>
                         </View>
                     )
                 )

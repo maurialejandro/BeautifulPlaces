@@ -22,6 +22,7 @@ export function LoginForm(props){
     const onSubmit = async (data) => {
         setIsLoading(true);
         const res = await userLogin(data);
+        console.log(res.error);
         // ToDo
         // Generar arquitectura de software para el manejo de distintos errores
         if(res.error === 'Network Error'){
